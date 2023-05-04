@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ app_name }}: {% block name1 %}{% endblock %}
+{% endblock %}
+
+{% block main %}
+    <header>
+        <div class="logo"><h2>{{ app_name }}</h2></div>
+        <nav>
+            <ul>
+                <li><button class="sign-in"><a href="/sign-in">sign in</a></button></li>
+                <li><button><a href="/sign-up">sign up</a></button></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-layout container-md">
+        <div class="form">
+            <h1>{% block name3 %}{% endblock %}</h1>
+            {% block info %}{% endblock %}
+            <form action="/{{ path }}" method="post" class="p-3 d-flex flex-column justify-content-center align-items-center text-center">
+                <input type="text" autofocus autocomplete="off" name="username" placeholder="Username" class="form-control mb-3">
+                <input type="text" autofocus autocomplete="off" name="password" placeholder="Password" class="form-control mb-3">
+                {% block confirmation %}{% endblock %}
+                <button type="submit">{% block name2 %}{% endblock %}</button>
+            </form>
+        </div>
+        <div class="img"><img src="../static/images/82250.jpg" alt=""></div>
+    </div>
+{% endblock %}

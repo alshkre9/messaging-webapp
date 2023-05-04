@@ -1,0 +1,86 @@
+:root {
+    --main-color: hsl(0, 0%, 8%);
+    --text-color: hsl(0, 0%, 41%);
+    --side-stuff: hsl(0, 0%, 98%);
+    --white-color: white;
+}
+body {
+    font-family: 'Epilogue', sans-serif;
+    text-transform: capitalize;
+}
+button {
+    padding: 10px 30px;
+    color: var(--main-color);
+    outline: none;
+    border: 2px solid var(--main-color);
+    border-radius: 15px;
+    background-color: var(--white-color);
+    text-transform: capitalize;
+    width: fit-content;
+}
+a {
+    text-decoration: none;
+    color: var(--main-color);
+}
+input {
+    width: fit-content !important;
+}
+.sign-in {
+    border: none;
+}
+li {
+    list-style: none;
+}
+p {
+    color: var(--text-color);
+}
+nav {
+    display: flex;
+    align-items: center;
+}
+nav > ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+}
+.logo > h2 {
+    font-weight: bold;
+    padding: 20px 0px;
+    color: var(--main-color);
+    margin: 0px;
+}
+.main-layout {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.img > img {
+    width: 500px;
+}
+.form {
+    text-align: center;
+}
+.form > h1 {
+    font-weight: bold;
+    font-size: 54px;
+}
+@media screen and (max-width: 992px) {
+    .main-layout{
+        flex-direction: column-reverse;
+    }
+    .form > h1 {
+        font-size: 40px;
+    }
+    .img > img {
+        width: 400px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .img > img {
+        width: 300px;
+    }
+}
