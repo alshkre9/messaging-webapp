@@ -4,5 +4,5 @@ from flask import redirect, session, url_for, render_template
 
 @app.route("/")
 @login_required
-def index():
-	return render_template("base.html")
+def main_page():
+	return render_template("main_page.html")

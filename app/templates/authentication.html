@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {{ app_name }}: {% block name1 %}{% endblock %}
+    {{ app_name }}: {{ name }}
 {% endblock %}
 
 {% block main %}
@@ -16,13 +16,13 @@
     </header>
     <div class="main-layout container-md">
         <div class="form">
-            <h1>{% block name3 %}{% endblock %}</h1>
+            <h1>{{ name }}</h1>
             {% block info %}{% endblock %}
-            <form action="/{{ path }}" method="post" class="p-3 d-flex flex-column justify-content-center align-items-center text-center">
+            <form action="{{ path }}" method="post" class="p-3 d-flex flex-column justify-content-center align-items-center text-center">
                 <input type="text" autofocus autocomplete="off" name="username" placeholder="Username" class="form-control mb-3">
                 <input type="text" autofocus autocomplete="off" name="password" placeholder="Password" class="form-control mb-3">
                 {% block confirmation %}{% endblock %}
-                <button type="submit">{% block name2 %}{% endblock %}</button>
+                <button type="submit">{{ name }}</button>
             </form>
         </div>
         <div class="img"><img src="../static/images/82250.jpg" alt=""></div>
