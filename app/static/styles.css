@@ -20,7 +20,7 @@ button {
     padding: 10px 30px;
     color: var(--main-color);
     outline: none;
-    border: 2px solid var(--main-color);
+    border: none;
     border-radius: 15px;
     background-color: var(--white-color);
     text-transform: capitalize;
@@ -30,14 +30,14 @@ a {
     text-decoration: none;
     color: var(--main-color);
 }
-input {
-    width: fit-content !important;
-}
-.sign-in {
-    border: none;
-}
 li {
     list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+input {
+    width: fit-content !important;
 }
 p {
     color: var(--text-color);
@@ -51,9 +51,12 @@ footer {
 nav {
     display: flex;
     align-items: center;
+    align-self: stretch;
 }
 nav > ul {
     display: flex;
+    height: 100%;
+    align-items: center;
     padding: 0;
     margin: 0;
 }
@@ -61,12 +64,17 @@ header {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid var(--side-stuff);
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
 }
 .logo > h2 {
     font-weight: bold;
     padding: 20px 0px;
     color: var(--main-color);
-    margin: 0px;
+    margin: 0px 20px 0px 0px;
 }
 .main-layout {
     display: flex;
@@ -101,4 +109,57 @@ header {
 }
 .user-logo {
     width: 24px;
+}
+.li-color {
+    color: var(--text-color);
+}
+.h-trans {
+    position: relative;
+}
+.h-trans::before {
+    content: "";
+    height: 2px;
+    width: 0px;
+    position: absolute;
+    right: 50%;
+    background-color: var(--main-color);
+    bottom: 0px;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+    transition-property: all;
+}
+.h-trans:hover::before {
+    width: 100%;
+    right: 0;
+}
+.search {
+    position: relative;
+}
+.search-logo {
+    position: absolute;
+    width: 20px;
+    top: 10px;
+    right: 5px;
+    padding: 0px;
+    height: 20px;
+    background-color: transparent;
+}
+.right-nav {
+    display: flex;
+}
+.with-border {
+    border: 2px solid var(--main-color);
+}
+.main-content {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+.menu {
+    border-right: 1px solid var(--side-stuff);
+    width: 25%;
+    overflow: auto;
+}
+.content {
+    width: 100%;
 }

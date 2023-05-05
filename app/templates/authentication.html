@@ -4,16 +4,15 @@
     {{ app_name }}: {{ name }}
 {% endblock %}
 
+{% block header %}
+    <nav>
+        <ul>
+            <li><button><a href="/sign-in">sign in</a></button></li>
+            <li><button class="with-border"><a href="/sign-up">sign up</a></button></li>
+        </ul>
+    </nav>
+{% endblock %}
 {% block main %}
-    <header>
-        <div class="logo"><h2>{{ app_name }}</h2></div>
-        <nav>
-            <ul>
-                <li><button class="sign-in"><a href="/sign-in">sign in</a></button></li>
-                <li><button><a href="/sign-up">sign up</a></button></li>
-            </ul>
-        </nav>
-    </header>
     <div class="main-layout container-md">
         <div class="form">
             <h1>{{ name }}</h1>
@@ -22,7 +21,7 @@
                 <input type="text" autofocus autocomplete="off" name="username" placeholder="Username" class="form-control mb-3">
                 <input type="text" autofocus autocomplete="off" name="password" placeholder="Password" class="form-control mb-3">
                 {% block confirmation %}{% endblock %}
-                <button type="submit">{{ name }}</button>
+                <button type="submit" class="with-border">{{ name }}</button>
             </form>
         </div>
         <div class="img"><img src="../static/images/82250.jpg" alt=""></div>

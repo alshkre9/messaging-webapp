@@ -14,7 +14,14 @@
 </head>
 <body id="vh1">
     <div class="container-xxl" id="vh2">
-    {% block main %}{% endblock %}
+        <header>
+            <div class="logo">
+                <h2>{{ app_name }}</h2>
+                {% block nav %}{% endblock %}
+            </div>
+            {% block header %}{% endblock %}
+        </header>
+        {% block main %}{% endblock %}
     </div>
     <footer></footer>
 </body>
