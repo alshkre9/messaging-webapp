@@ -7,6 +7,12 @@ window.onload = function ()
     }
     else
     {
-        document.getElementById("vh2").style.height = "100vh";
+        document.getElementById("vh1").style.height = "auto";
+        document.getElementById("vh2").style.height = "100vh"
     }
+    var ele = document.getElementById("user-group").addEventListener("click", function () 
+    {
+        console.log("hello")
+    }
+    )
 }
