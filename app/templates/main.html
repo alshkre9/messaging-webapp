@@ -1,41 +1,23 @@
-{% extends "base.html" %}
-
-{% block header %}
-        <div class="right-nav">
-            <form action="{{ path }}" method="get" class="search">
-                <input type="text" class="form-control" placeholder="Search" name="q">
-                <img src="../static/images/magnifying-glass-solid.svg" alt="" class="search-logo">
-                <button class="search-logo" type="submit"></button>
-            </form>
-            <img src="../static/images/user-solid.svg" alt="" class="user-logo ms-5 me-4">
-        </div>
-{% endblock %}
-
-{% block nav %}
-        <nav>
-            <ul>
-                <li class="h-trans"><a href="/friends" class="li-color nav-btn">friends</a></li>
-                <li class="h-trans"><a href="/groups" class="li-color nav-btn">groups</a></li>
-            </ul>
-        </nav>
-{% endblock %}
+{% extends "main_header.html" %}
 
 {% block main %}
-    <div class="main-content">
-        <div class="menu" style="border-left: 2px solid block">
+    <div class="flex h-100 overflow-auto">
+        <div class="menu overflow-auto" style="border-left: 2px solid block">
             <ul>
                 {% block friends_groups %}{% endblock %}
             </ul>
         </div>
-        <div class="chat">
-            <div class="content">
-                <ul>
+        <div class="flex flex-column h-100 w-100">
+            <div class="content overflow-auto h-100 w-100">
+                <ul class="flex flex-column flex-end h-100">
                     {% block messages %}{% endblock %}
+                    <li class="main-backcolor" style="width:fit-content; height:fit-content;">hello</li>
+                    <li class="main-backcolor" style="width:fit-content; height:fit-content;">hello</li>
                 </ul>
             </div>
-            <form action="/" method="post" class="message">
-                <button type="submit"><img src="../static/images/paper-plane-solid.svg" class="sent-logo" alt=""></button>
-                <input type="text" placeholder="Message">
+            <form action="/" method="post" class="message pa-10 w-100 side-backcolor flex align-center">
+                <button type="submit" class="transparent-backcolor"><img src="../static/images/paper-plane-solid.svg" class="svg-img" alt=""></button>
+                <input type="text" placeholder="Message" class="transparent-backcolor pa-10 w-100 border-radius">
             </form>
         </div>
     </div>

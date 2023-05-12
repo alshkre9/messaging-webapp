@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block header %}
+        <div class="flex align-center">
+            <form action="/search" method="get" class="flex align-center">
+                <div class="pos-relative">
+                    <input type="text" class="form-control" placeholder="Search" name="q">
+                    <img src="../static/images/magnifying-glass-solid.svg" alt="" class="svg-img abs abs-right">
+                </div>
+                <button class="search-logo" type="submit"></button>
+            </form>
+            <img src="../static/images/user-solid.svg" alt="" class="svg-img">
+        </div>
+{% endblock %}
+
+{% block left_nav %}
+        <nav>
+            <ul>
+                <li class="pos-relative border-b-trans"><a href="/friends" class="li-color py-10 px-20">friends</a></li>
+                <li class="pos-relative border-b-trans"><a href="/groups" class="li-color py-10 px-20">groups</a></li>
+            </ul>
+        </nav>
+{% endblock %}

@@ -12,18 +12,18 @@
     <script src="../static/main.js"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body id="vh1">
-    <div class="container-xxl">
-        <div id="vh2">
+<body id="vh1" class="flex flex-column spc-between">
+    <div id="vh2" class="container-xxl flex flex-column">
             <header>
-                <div class="logo">
-                    <h2>{{ app_name }}</h2>
-                    {% block nav %}{% endblock %}
+                <div class="flex">
+                    <div class="flex align-center">
+                        <h2 class="title">{{ app_name }}</h2>
+                    </div>
+                    {% block left_nav %}{% endblock %}
                 </div>
                 {% block header %}{% endblock %}
             </header>
             {% block main %}{% endblock %}
-        </div>
     </div>
     <footer></footer>
 </body>
