@@ -30,6 +30,9 @@ button {
 a {
     text-decoration: none;
     color: var(--main-color);
+    transition-property: all;
+    transition-timing-function: linear;
+    transition-duration: 3s;
 }
 li {
     list-style: none;
@@ -70,7 +73,6 @@ header {
     justify-content: space-between;
     border-bottom: 1px solid var(--side-stuff);
     align-items: center;
-    height: 12%;
 }
 .logo {
     display: flex;
@@ -126,6 +128,9 @@ header {
 .li-color {
     color: var(--text-color);
 }
+.nav-btn {
+    padding: 10px 20px;
+}
 .h-trans {
     position: relative;
 }
@@ -150,7 +155,7 @@ header {
 }
 .search-logo {
     position: absolute;
-    top: 10px;
+    top: 8px;
     right: 5px;
     /* background-color: transparent; */
 }
@@ -163,7 +168,7 @@ header {
 }
 .main-content {
     display: flex;
-    height: 88%;
+    height: 100%;
     overflow: hidden;
 }
 .menu {
@@ -174,6 +179,7 @@ header {
 .content {
     width: 100%;
     overflow: auto;
+    height: 100%;
 }
 .content > ul {
     display: flex;
@@ -235,4 +241,13 @@ header {
     width: 100% !important;
     outline: none;
     background-color: transparent;
+}
+#vh2 {
+    display: flex;
+    flex-direction: column;
+}
+@media screen and (max-width: 600px) {
+    header {flex-direction: column;}
+    .logo > h2 {margin: 0px;}
+    .logo {justify-content: space-between; width: 100%;}
 }

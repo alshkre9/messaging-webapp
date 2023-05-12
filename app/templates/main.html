@@ -14,8 +14,8 @@
 {% block nav %}
         <nav>
             <ul>
-                <li class="h-trans"><button class="li-color"><a href=""></a>friends</button></li>
-                <li class="h-trans"><button class="li-color"><a href=""></a>groups</button></li>
+                <li class="h-trans"><a href="/friends" class="li-color nav-btn">friends</a></li>
+                <li class="h-trans"><a href="/groups" class="li-color nav-btn">groups</a></li>
             </ul>
         </nav>
 {% endblock %}
@@ -24,24 +24,13 @@
     <div class="main-content">
         <div class="menu" style="border-left: 2px solid block">
             <ul>
-                <li class="user-group py-3" id="user-group"><img src="../static/images/82250.jpg" width="80px" style="border-radius: 50%;" alt="">hello</li>
+                {% block friends_groups %}{% endblock %}
             </ul>
         </div>
         <div class="chat">
             <div class="content">
                 <ul>
-                    <li class="friend">hello</li>
-                    <li class="me">hello</li>
-                    <li class="me">hello i wana order pizza please</li>
-                    <li class="friend">hello</li>
-                    <li class="me">hello</li>
-                    <li class="friend">hello</li>
-                    <li class="friend">hello</li>
-                    <li class="friend">hello</li>
-                    <li class="friend">hello</li>
-                    <li class="friend">hello</li>
-                    <li class="friend">hello</li>
-                    <li class="friend">hello</li>
+                    {% block messages %}{% endblock %}
                 </ul>
             </div>
             <form action="/" method="post" class="message">
