@@ -2,13 +2,15 @@
 
 {% block main %}
     <div class="flex h-100 overflow-auto">
-        <div class="menu overflow-auto" style="border-left: 2px solid block">
+        <div class="overflow-auto right-border position-relative" id="menu">
+            <!-- <button onclick="change_width()" class="svg-img abs abs-top-right"><img src="../static/images/arrow-right-long-solid.svg" alt="" class="svg-img" id="rotate"></button> -->
             <ul>
                 {% block friends_groups %}{% endblock %}
             </ul>
         </div>
-        <div class="flex flex-column h-100 w-100">
-            <div class="content overflow-auto h-100 w-100">
+        <div class="flex flex-column h-100 w-100 pos-relative">
+            <button onclick="change_width()" class="svg-img abs abs-top-left"><img src="../static/images/arrow-right-long-solid.svg" alt="" class="svg-img" id="rotate"></button>
+            <div class="overflow-auto h-100 w-100" id="content">
                 <ul class="flex flex-column flex-end h-100">
                     {% block messages %}{% endblock %}
                     <li class="main-backcolor" style="width:fit-content; height:fit-content;">hello</li>

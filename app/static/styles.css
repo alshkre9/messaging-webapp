@@ -10,7 +10,6 @@ body {
     text-transform: capitalize;
     margin: 0px;
     padding: 0px;
-    height: 100vh;
 }
 button {
     padding: 10px 30px;
@@ -78,6 +77,9 @@ header {
 .align-center {
     align-items: center;
 }
+.align-start {
+    align-items: flex-start;
+}
 .flex-column {
     flex-direction: column;
 }
@@ -93,13 +95,16 @@ header {
 .spc-between {
     justify-content: space-between;
 }
+.spc-evenly {
+    justify-content: space-evenly;
+}
 .align-self-center {
     align-self: center;
 }
 .align-self-end {
     align-self: flex-end;
 }
-.align-self.start {
+.align-self-start {
     align-self: flex-start;
 }
 /* end */
@@ -125,6 +130,9 @@ header {
 }
 .px-20 {
     padding: 0px 20px;
+}
+.ml-20 {
+    margin-left: 20px
 }
 /* end */
 
@@ -173,12 +181,19 @@ header {
     right: 5px;
     transform: translate(0%, -50%);
 }
-.menu {
+.abs-top-left {
+    left: 5px;
+}
+#rotate {
+    transform: rotate(180deg)
+}
+#menu {
     width: 25%;
+    transition: all 0.3s linear;
 }
 /* end */
 
-/* transition */
+/* transition and keyframes */
 .border-b-trans::before {
     content: "";
     height: 2px;
@@ -194,6 +209,14 @@ header {
 .border-b-trans:hover::before {
     width: 100%;
     right: 0;
+}
+@keyframes rotate-left {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(180deg);}
+}
+@keyframes rotate-right {
+    from {transform: rotate(180deg);}
+    to {transform: rotate(0deg);}
 }
 /* end */
 
@@ -256,8 +279,9 @@ header {
     }
 }
 @media screen and (max-width: 600px) {
+    .title {margin: 0px;}
     header {flex-direction: column;}
-    .logo > h2 {margin: 0px;}
-    .logo {justify-content: space-between; width: 100%;}
+    .full_width_media{width: 100%; justify-content: space-between;}
+    #menu {width: 75%;}
 }
 /* end */

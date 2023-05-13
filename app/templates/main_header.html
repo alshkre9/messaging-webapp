@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
 {% block header %}
-        <div class="flex align-center">
+        <div class="flex align-center full_width_media">
             <form action="/search" method="get" class="flex align-center">
                 <div class="pos-relative">
                     <input type="text" class="form-control" placeholder="Search" name="q">
-                    <img src="../static/images/magnifying-glass-solid.svg" alt="" class="svg-img abs abs-right">
+                    <button class="abs abs-right svg-img p-0 transparent-backcolor" type="submit"><img src="../static/images/magnifying-glass-solid.svg" alt="" class="svg-img"></button>
                 </div>
-                <button class="search-logo" type="submit"></button>
             </form>
-            <img src="../static/images/user-solid.svg" alt="" class="svg-img">
+            <img src="../static/images/user-solid.svg" alt="" class="svg-img ml-20">
         </div>
 {% endblock %}
 

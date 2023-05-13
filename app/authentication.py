@@ -1,5 +1,7 @@
 from app.__init__ import app
 from flask import session, render_template, request
+from werkzeug.utils import secure_filename
+from os.path import join
 
 @app.route("/sign_out")
 def sign_out():
@@ -10,8 +12,12 @@ def sign_out():
 def sign_in():
     session.permanent = False
     session["user_id"] = 1
-    return render_template("sign_in.html", app_name="main", path="/sign-in", name="sign in")
+    return render_template("sign_in.html", app_name=app.config["APP_NAME"], path="/sign-in", name="sign in")
 
 @app.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
-    return render_template("sign_up.html", app_name="main", path="/sign-up", name="sign up")
+    if "POST" == request.method:
+        if "file" in request.files:
+            f = request.files["file"]
+            f.save(join(app.config["PROFILE_IMAGES"], secure_filename(f.filename)))
+    return render_template("sign_up.html", app_name=app.config["APP_NAME"], path="/sign-up", name="sign up")
