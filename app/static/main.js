@@ -7,14 +7,14 @@ window.onload = function ()
     }
     else if (pathname.includes("/search"))
     {
-        document.getElementById("vh1").style.height = null;
-        document.getElementById("vh2").style.height = null;
+        document.getElementById("vh1").style.minHeight = "100vh";
     }
     else
     {
-        document.getElementById("vh1").style.height = null;
+        document.getElementById("vh1").style.height = "auto";
         document.getElementById("vh2").style.height = "100vh";
     }
+    // setTimeout(function(){document.body.style.opacity="100";},500);
 }
 let flag = 1
 function change_width()
