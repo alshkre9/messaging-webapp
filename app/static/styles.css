@@ -250,12 +250,25 @@ header {
 .border-radius {
     border-radius: 20px;
 }
-.message {
+.message-form {
     bottom: 0px;
 }
-.message > input {
+.message-form > input {
     border: none;
     outline: none;
+}
+.message {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    color: var(--white-color);
+}
+.friend-message {
+    background-color: var(--main-color);
+}
+.user-message {
+    background-color: blue;
+    align-self: flex-end;
 }
 /* end */
 

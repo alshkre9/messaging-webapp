@@ -1,5 +1,16 @@
 window.onload = function ()
 {
+    document.querySelectorAll("#friends-groups li").forEach(
+        function (item) {
+            item.addEventListener("click", function ()
+            {
+                room = item.id
+                console.log(room)
+            }
+            )
+        }
+    )
+
     var pathname = window.location.pathname;
     if (pathname == "/sign-in" || pathname == "/sign-up")
     {
@@ -16,7 +27,9 @@ window.onload = function ()
     }
     // setTimeout(function(){document.body.style.opacity="100";},500);
 }
+
 let flag = 1
+
 function change_width()
 {
     if (flag == 1)

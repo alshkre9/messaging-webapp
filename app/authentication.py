@@ -1,5 +1,5 @@
-from app.__init__ import app
-from flask import session, render_template, request
+from __init__ import app, socketio
+from flask import session, render_template, request, redirect
 from werkzeug.utils import secure_filename
 from os.path import join
 
@@ -10,8 +10,10 @@ def sign_out():
 
 @app.route("/sign-in", methods=["GET", "POST"])
 def sign_in():
+    if "user_id" in session:
+        return redirect("/")
     session.permanent = False
-    session["user_id"] = 1
+    session["user_id"] = "1"
     return render_template("sign_in.html", app_name=app.config["APP_NAME"], path="/sign-in", name="sign in")
 
 @app.route("/sign-up", methods=["GET", "POST"])
