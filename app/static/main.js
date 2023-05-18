@@ -4,8 +4,7 @@ window.onload = function ()
         function (item) {
             item.addEventListener("click", function ()
             {
-                room = item.id
-                console.log(room)
+                change_main_chat()
             }
             )
         }
@@ -25,25 +24,40 @@ window.onload = function ()
         document.getElementById("vh1").style.height = "auto";
         document.getElementById("vh2").style.height = "100vh";
     }
-    // setTimeout(function(){document.body.style.opacity="100";},500);
 }
 
 let flag = 1
 
-function change_width()
+function change_main_chat()
 {
+    menu = document.getElementById("menu");
+    rotate = document.getElementById("rotate")
+    content = document.getElementById("content")
     if (flag == 1)
     {
-        menu = document.getElementById("menu");
-        document.getElementById("rotate").style.animation = "rotate-right 0.3s forwards";
+        rotate.style.animation = "rotate-right 0.3s forwards";
         menu.style.width = "0%";
         menu.style.border = "none";
+        content.style.width = "100%";
     }
     else
     {
-        document.getElementById("rotate").style.animation = "rotate-left 0.3s forwards";
-        document.getElementById("menu").style.width = null;
+        if (content.offsetWidth == 0)
+        {
+            room = null;
+        }
         menu.style.border = null;
+        rotate.style.animation = "rotate-left 0.3s forwards";
+        menu.style.width = null;
+        content.style.width = null;
     }
     flag *= -1
+}
+
+function create_message(message_value, class_name)
+{
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(message_value));
+    li.classList.add("message", class_name);
+    document.getElementById("messages").appendChild(li);
 }

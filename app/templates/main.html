@@ -1,22 +1,22 @@
 {% extends "main_header.html" %}
 
 {% block main %}
-    <div class="flex h-100 overflow-auto">
+    <div class="flex h-100 overflow-hidden right-border left-border">
         <div class="overflow-auto right-border position-relative" id="menu">
             <!-- <button onclick="change_width()" class="svg-img abs abs-top-right"><img src="../static/images/arrow-right-long-solid.svg" alt="" class="svg-img" id="rotate"></button> -->
             <ul class="flex flex-column flex-end" id="friends-groups">
                 {% block friends_groups %}{% endblock %}
             </ul>
         </div>
-        <div class="flex flex-column h-100 w-100 pos-relative">
-            <button onclick="change_width()" class="svg-img abs abs-top-left"><img src="../static/images/arrow-right-long-solid.svg" alt="" class="svg-img" id="rotate"></button>
-            <div class="overflow-auto h-100 w-100" id="content">
+        <div class="flex flex-column h-100 pos-relative"  id="content">
+            <button onclick="change_main_chat()" class="svg-img abs abs-top-left"><img src="../static/images/arrow-right-long-solid.svg" alt="" class="svg-img" id="rotate"></button>
+            <div class="overflow-auto h-100 w-100">
                 <ul class="flex flex-column flex-end h-100" id="messages">
                     {% block messages %}{% endblock %}
                 </ul>
             </div>
             <div class="message-form pa-10 w-100 side-backcolor flex align-center">
-                <button type="submit" onclick="message()" class="transparent-backcolor"><img src="../static/images/paper-plane-solid.svg" class="svg-img" alt=""></button>
+                <button type="submit" onclick="send_message()" class="transparent-backcolor"><img src="../static/images/paper-plane-solid.svg" class="svg-img" alt=""></button>
                 <input type="text" placeholder="Message" class="transparent-backcolor pa-10 w-100 border-radius" id="message">
             </div>
         </div>

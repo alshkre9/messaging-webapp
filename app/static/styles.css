@@ -188,9 +188,12 @@ header {
 #rotate {
     transform: rotate(180deg)
 }
+#content {
+    width: 100%;
+}
 #menu {
-    width: 25%;
-    transition: all 0.3s linear;
+    width: 50%;
+    transition: width 0.3s linear;
 }
 /* end */
 
@@ -210,6 +213,9 @@ header {
 .border-b-trans:hover::before {
     width: 100%;
     right: 0;
+}
+#content {
+    transition: width 0.2s linear;
 }
 @keyframes rotate-left {
     from {transform: rotate(0deg);}
@@ -247,6 +253,9 @@ header {
 .right-border {
     border-right: 1px solid var(--side-stuff);
 }
+.left-border {
+    border-left: 1px solid var(--side-stuff);
+}
 .border-radius {
     border-radius: 20px;
 }
@@ -262,6 +271,7 @@ header {
     height: fit-content;
     padding: 10px 20px;
     color: var(--white-color);
+    text-transform: none;
 }
 .friend-message {
     background-color: var(--main-color);
@@ -292,10 +302,12 @@ header {
         width: 300px;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 576px) {
     .title {margin: 0px;}
     header {flex-direction: column;}
+    /* this style for main_header file */
     .full_width_media{width: 100%; justify-content: space-between;}
-    #menu {width: 75%;}
+    #menu {width: 100%; border: none;}
+    #content {width: 0%;}
 }
 /* end */
