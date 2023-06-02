@@ -135,6 +135,9 @@ header {
 .ml-20 {
     margin-left: 20px
 }
+.min-height-100 {
+    min-height: 100% !important;
+}
 /* end */
 
 /* colors */
@@ -272,6 +275,8 @@ header {
     padding: 10px 20px;
     color: var(--white-color);
     text-transform: none;
+    max-width: 50%;
+    word-wrap: anywhere;
 }
 .friend-message {
     background-color: var(--main-color);

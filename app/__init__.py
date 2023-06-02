@@ -20,9 +20,6 @@ Session(app)
 # make flask manage the session
 socketio = SocketIO(app, manage_session=False) 
 
-from main import *
-from authentication import *
-from sockets import *
-
-if __name__ == "__main__":
-    socketio.run(app, log_output=True, debug=True)
+from app.main import *
+from app.authentication import *
+from app.sockets import *

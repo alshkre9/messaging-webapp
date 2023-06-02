@@ -4,7 +4,7 @@ window.onload = function ()
         function (item) {
             item.addEventListener("click", function ()
             {
-                change_main_chat()
+                // 
             }
             )
         }
@@ -24,34 +24,6 @@ window.onload = function ()
         document.getElementById("vh1").style.height = "auto";
         document.getElementById("vh2").style.height = "100vh";
     }
-}
-
-let flag = 1
-
-function change_main_chat()
-{
-    menu = document.getElementById("menu");
-    rotate = document.getElementById("rotate")
-    content = document.getElementById("content")
-    if (flag == 1)
-    {
-        rotate.style.animation = "rotate-right 0.3s forwards";
-        menu.style.width = "0%";
-        menu.style.border = "none";
-        content.style.width = "100%";
-    }
-    else
-    {
-        if (content.offsetWidth == 0)
-        {
-            room = null;
-        }
-        menu.style.border = null;
-        rotate.style.animation = "rotate-left 0.3s forwards";
-        menu.style.width = null;
-        content.style.width = null;
-    }
-    flag *= -1
 }
 
 function create_message(message_value, class_name)

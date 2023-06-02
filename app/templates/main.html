@@ -8,10 +8,9 @@
                 {% block friends_groups %}{% endblock %}
             </ul>
         </div>
-        <div class="flex flex-column h-100 pos-relative"  id="content">
-            <button onclick="change_main_chat()" class="svg-img abs abs-top-left"><img src="../static/images/arrow-right-long-solid.svg" alt="" class="svg-img" id="rotate"></button>
+        <div class="flex flex-column h-100"  id="content">
             <div class="overflow-auto h-100 w-100">
-                <ul class="flex flex-column flex-end h-100" id="messages">
+                <ul class="flex flex-column flex-end min-height-100" id="messages">
                     {% block messages %}{% endblock %}
                 </ul>
             </div>
