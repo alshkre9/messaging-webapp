@@ -1,8 +1,13 @@
-from app.__init__ import app, socketio
+from app.__init__ import app
+from app.functions import get_valid_filename, valid_username, valid_password
+from app.db_metadata import *
+
 from flask import session, render_template, request, redirect
-from werkzeug.utils import secure_filename
+from sqlalchemy.orm import Session
+
+from werkzeug.security import generate_password_hash
 from os.path import join
-from flask_socketio import join_room
+from PIL import Image
 
 @app.route("/sign_out")
 def sign_out():
@@ -13,16 +18,27 @@ def sign_out():
 def sign_in():
     if "user_id" in session:
         return redirect("/")
-    session.permanent = False
-    session["user_id"] = 1
-    if request.method == "POST":
-        return redirect("/friends")
     return render_template("sign_in.html", app_name=app.config["APP_NAME"], path="/sign-in", name="sign in")
 
 @app.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
+
     if "POST" == request.method:
-        if "file" in request.files:
-            f = request.files["file"]
-            f.save(join(app.config["PROFILE_IMAGES"], secure_filename(f.filename)))
+        password = request.form.get("password")
+        username = request.form.get("username").title()
+        if valid_username(username) and valid_password(password):
+            with Session(ENGINE) as sess:
+                user = User(username=username, hash=generate_password_hash(password))
+                sess.add(user)
+                sess.flush()
+    
+                if (f := request.files["file"]):
+                    if (filename := get_valid_filename(f.filename, user.id)):
+                        f = Image.open(f).resize(app.config["PROFILE_IMAGES_DIMENSIONS"])
+                        f.save(join(app.config["PROFILE_IMAGES"], filename))
+                        user.filename = filename
+                sess.commit()
+        else:
+            return "non valid username and password".title()
+
     return render_template("sign_up.html", app_name=app.config["APP_NAME"], path="/sign-up", name="sign up")

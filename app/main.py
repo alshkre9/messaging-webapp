@@ -1,6 +1,7 @@
 from app. __init__ import app
 from app.functions import login_required_http
-from flask import redirect, session, url_for, render_template, request
+
+from flask import redirect, render_template
 
 
 @app.route("/")

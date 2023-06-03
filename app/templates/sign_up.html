@@ -1,10 +1,10 @@
 {% extends "authentication.html" %}
 
 {% block info %}
-    <p>please don't enter any sensitive information that has <br> been used on other websites</p>
+    <p>please don't enter any sensitive information that had <br> been used on other websites</p>
 {% endblock %}
 
 {% block confirmation %}
     <input type="text" autofocus autocomplete="off" name="confirm_password" placeholder="Confirm Password" class="form-control mb-3">
-    <input type="file" name="file" id="">
+    <input type="file" name="file" id="" class="form-control">
 {% endblock %}
