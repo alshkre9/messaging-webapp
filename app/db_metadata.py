@@ -44,5 +44,5 @@ class Friendship(Base):
     friend_id = Column("friend_id", Integer, ForeignKey("users.id"))
     room_id = Column("room_id", Integer, ForeignKey("rooms.id"))
 
-Base.metadata.drop_all(ENGINE)
+# Base.metadata.drop_all(ENGINE)
 Base.metadata.create_all(ENGINE)

@@ -2,7 +2,7 @@
 
 {% block header %}
     <nav>
-        <ul>
+        <ul class="flex spc-evenly w-100">
             <li><button><a href="/sign-in">sign in</a></button></li>
             <li><button class="default-border"><a href="/sign-up">sign up</a></button></li>
         </ul>
@@ -13,11 +13,12 @@
         <div class="align-self-center text-center">
             <h1 class="main-text">{{ name }}</h1>
             {% block info %}{% endblock %}
-            <form action="{{ path }}" method="post" class="pa-20 flex flex-column justify-center align-center text-center" enctype="multipart/form-data">
-                <input type="text" autofocus autocomplete="off" name="username" placeholder="Username" class="form-control mb-3">
-                <input type="text" autofocus autocomplete="off" name="password" placeholder="Password" class="form-control mb-3">
+            <form id="auth-form" action="{{ path }}" method="post" class="pa-20 flex flex-column justify-center align-center text-center" enctype="multipart/form-data">
+                <input type="text" autofocus autocomplete="off" name="username" placeholder="Username" class="form-control mb-3" id="username">
+                <input type="text" autofocus autocomplete="off" name="password" placeholder="Password" class="form-control mb-3" id="password">
                 {% block confirmation %}{% endblock %}
-                <button type="submit" class="default-border">{{ name }}</button>
+                <span id="warning" class="text-danger my-1 mb-2">invalid input</span>
+                <button type="button" onclick="valid_authentication()" class="default-border">{{ name }}</button>
             </form>
         </div>
         <div class="flex justify-center"><img src="../static/images/82250.jpg" alt="" class="auth-img"></div>

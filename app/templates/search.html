@@ -9,10 +9,23 @@
                 </tr>
             </thead>
             <tbody class="w-100">
-                <tr class="flex spc-around w-100">
-                    <td>hello, world</td>
-                    <td>hello, world</td>
-                </tr>
+                {% for friend in friends %}
+                    <tr class="flex spc-around w-100">
+                        <td class="flex align-center w-100">
+                            <div>
+                                <div class="profile-img mr-20" style="background-image: url(../static/images/profile_images/{{ friend.filename }});"></div>
+                                <div>
+                                    <p class="mb-0 font-20">{{ friend.username }}</p>
+                                </div>
+                            </div>
+                            <form action="/search" method="post" aria-readonly="true">
+                                <input type="hidden" value="{{ friend.id }}" name="id">
+                                <button type="submit">add friend</button>
+                            </form>
+                        </td>
+                        <td class="flex w-100"></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
 {% endblock %}

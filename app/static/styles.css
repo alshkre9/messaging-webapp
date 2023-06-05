@@ -135,8 +135,14 @@ header {
 .ml-20 {
     margin-left: 20px
 }
+.mr-20 {
+    margin-right: 20px;
+}
 .min-height-100 {
     min-height: 100% !important;
+}
+.font-20 {
+    font-size: 20px;
 }
 /* end */
 
@@ -244,6 +250,7 @@ header {
     font-weight: bold;
     font-size: 54px;
 }
+
 .svg-img {
     width: 24px;
     height: 24px;
@@ -285,6 +292,17 @@ header {
     background-color: blue;
     align-self: flex-end;
 }
+#warning {
+    display: none;
+}
+.profile-img {
+    width: 52px;
+    height: 52px;
+    padding: 0px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+}
 /* end */
 
 /* media */
@@ -311,7 +329,7 @@ header {
     .title {margin: 0px;}
     header {flex-direction: column;}
     /* this style for main_header file */
-    .full_width_media{width: 100%; justify-content: space-between;}
+    .full_width_media{width: 100%; justify-content: center;}
     #menu {width: 100%; border: none;}
     #content {width: 0%;}
 }

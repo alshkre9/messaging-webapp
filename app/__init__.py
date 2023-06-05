@@ -3,8 +3,8 @@ from flask_socketio import SocketIO
 import flask_session
 
 APP_NAME = "main"
-PROFILE_IMAGES = "profile_images/"
-PROFILE_IMAGES_DIMENSIONS = (100, 100)
+PROFILE_IMAGES = "C:\Github\\app\\app\static\images\profile_images"
+PROFILE_IMAGES_DIMENSIONS = (128, 128)
 ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 
 app = Flask(__name__)
