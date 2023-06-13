@@ -123,17 +123,31 @@ header {
 .pa-10 {
     padding: 10px;
 }
+.py-5 {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
 .py-10 {
-    padding: 10px 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.py-20 {
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 .px-10 {
-    padding: 0px 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .px-20 {
-    padding: 0px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .ml-20 {
     margin-left: 20px
+}
+.mr-10 {
+    margin-right: 10px;
 }
 .mr-20 {
     margin-right: 20px;
@@ -155,6 +169,9 @@ header {
 }
 .text-color {
     color: var(--text-color);
+}
+.text-backcolor {
+    background-color: var(--text-color);
 }
 .side-color {
     color: var(--side-stuff);
@@ -190,6 +207,11 @@ header {
     top: 50%;
     right: 5px;
     transform: translate(0%, -50%);
+}
+.abs-top-center {
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 .abs-top-left {
     left: 5px;
@@ -234,6 +256,14 @@ header {
     from {transform: rotate(180deg);}
     to {transform: rotate(0deg);}
 }
+@keyframes go-down {
+    from {top: 100%; opacity: 0;}
+    to {top: 165%; opacity: 1;}
+}
+@keyframes go-up {
+    from {top: 165%; opacity: 1;}
+    to {top: 100%; opacity: 0;}
+}
 /* end */
 
 /* specification */
@@ -265,6 +295,9 @@ header {
 }
 .left-border {
     border-left: 1px solid var(--side-stuff);
+}
+.bottom-border {
+    border-bottom: 1px solid var(--side-stuff);
 }
 .border-radius {
     border-radius: 20px;
@@ -302,6 +335,42 @@ header {
     background-position: center;
     background-size: cover;
     border-radius: 50%;
+}
+.box-shadow {
+    box-shadow: 10px 10px 20px rgb(0, 0, 0, 10%);
+}
+#note {
+    top: -6px;
+    right: 0px;
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
+    border-radius: 50%;
+    color: white;
+}
+.pointer-hover {
+    cursor: pointer;
+}
+#sub-menu {
+    display: none;
+    top: 165%;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+#sub-menu > li:not(:nth-last-child(1)) {
+    border-bottom-color: var(--text-color);
+}
+#sub-menu::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    left: 50%;
+    background-color: var(--side-stuff);
+    transform: rotate(45deg) translate(-50%, 0);
+    position: absolute;
+    transform-origin: left;
 }
 /* end */
 

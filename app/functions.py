@@ -1,7 +1,10 @@
 from app.__init__ import app
+from app.db_metadata import ENGINE, Friendshiprequest, User
 
 from flask import redirect, session, url_for
 from flask_socketio import disconnect
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 from werkzeug.utils import secure_filename
 from functools import wraps
@@ -46,9 +49,13 @@ def valid_filename_extension(filename: str) -> bool:
     return filename.rsplit(".", 1)[1].lower() in app.config["ALLOWED_EXTENSIONS"]
 
 def valid_username(username: str) -> bool:
-    engine = compile("^[0-9-A-Za-z]|_{8,28}$")
+    engine = compile("^(?:\d|\w){8,28}$")
     return (true := engine.search(username))
 
 def valid_password(password: str) -> bool:
     engine = compile("^.{8,28}$")
     return (true := engine.search(password))
+
+def get_notification():
+    sess = Session(ENGINE)
+    return sess.execute(select(User).where(User.id.in_(select(Friendshiprequest.sender_id).where(Friendshiprequest.receiver_id == session["user_id"])))).scalars()

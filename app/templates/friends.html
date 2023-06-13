@@ -1,7 +1,13 @@
 {% extends "main.html" %}
 
 {% block friends_groups %}
-
+    {% for friend in friends %}
+        {% if friend[0].id != user_id%}
+            <li id="{{ friend[1] }}" class="pa-10 bottom-border pointer-hover">
+                <img class="profile-img mr-20" style="background-image: url(../static/images/profile_images/{{ friend[0].filename }}); alt="">{{ friend[0].username }}
+            </li>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
 
 {% block messages %}

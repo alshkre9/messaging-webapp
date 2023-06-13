@@ -1,13 +1,33 @@
 {% extends "base.html" %}
 
 {% block header %}
-        <div class="flex align-center full_width_media">
+        <div class="flex align-center full_width_media" aria-readonly="true">
             <form action="/search" method="get" class="flex align-center">
                 <div class="pos-relative">
                     <input type="text" class="form-control" placeholder="Search" name="q">
                     <button class="abs abs-right svg-img p-0 transparent-backcolor" type="submit"><img src="../static/images/magnifying-glass-solid.svg" alt="" class="svg-img"></button>
                 </div>
             </form>
+            <div class="pos-relative ml-20 svg-img">
+                <button id="notifications" onclick="show_notice()" class="svg-img">
+                    <div id="note" class=" abs flex align-center justify-center white-color bg-danger"></div>
+                    <img src="../static/images/bell-svgrepo-com.svg" alt="" class="svg-img">
+                </button>
+                <ul id="sub-menu" class="flex flex-column abs side-backcolor abs-top-center">
+                    {% for notice in notification %}
+                        <li id="" class="overflow-hidden flex spc-between bottom-border pa-10">
+                            <div class="flex align-center mr-10">
+                                <img class="profile-img mr-10" style="background-image: url(../static/images/profile_images/{{ notice.filename }}); alt="">
+                                <span class="main-color">{{ notice.username }}</span>
+                            </div>
+                            <form action="/accept " method="post" aria-readonly="true">
+                                <input type="hidden" name="user_id" value="{{ notice.id }}">
+                                <button class="bg-primary white-color py-5 px-10 border-radius m-0 pointer-hover">accept</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
             <img alt="" class="profile-img ml-20" style="background-image: url(../static/images/profile_images/{{ filename }});">
         </div>
 {% endblock %}
@@ -16,7 +36,7 @@
         <nav>
             <ul>
                 <li class="pos-relative border-b-trans"><a href="/friends" class="li-color py-10 px-20">friends</a></li>
-                <li class="pos-relative border-b-trans"><a href="/groups" class="li-color py-10 px-20">groups</a></li>
+                <!-- <li class="pos-relative border-b-trans"><a href="/groups" class="li-color py-10 px-20">groups</a></li> -->
             </ul>
         </nav>
 {% endblock %}

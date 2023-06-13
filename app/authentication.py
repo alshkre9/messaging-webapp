@@ -22,14 +22,16 @@ def sign_in():
         username = request.form.get("username")
         password = request.form.get("password")
         if valid_username(username) and valid_password(password):
-            with Session(ENGINE) as sess:
-                stmt = select(User).where(User.username == username)
-                for user in sess.execute(stmt).scalars():
-                    if check_password_hash(user.hash, password):
-                        session["user_id"] = user.id
-                        session["username"] = user.username
-                        session["filename"] = user.filename
-                        return(redirect("/"))
+            sess = Session(ENGINE)
+            sess.expire_on_commit = False
+            stmt = select(User).where(User.username == username)
+            for user in sess.execute(stmt).scalars():
+                if check_password_hash(user.hash, password):
+                    session["user_id"] = user.id
+                    session["username"] = user.username
+                    session["filename"] = user.filename
+                    sess.commit()
+                    return(redirect("/"))
         else:
             return "invalid username or password".title()
 
