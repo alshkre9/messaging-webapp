@@ -1,19 +1,18 @@
 const socket = io();
-let user_id = null;
-let room_id = null
+let user_room = null;
+let to_room = null
 
-// start connection by storing user_id
-socket.on("user_id", function(id)
+// start connection by storing room_id
+socket.on("user_room", function(id)
     {
-        user_id = id;
+        user_room = id;
     }
 );
 
-socket.on("notification")
 
 // receive_message from the server
-socket.on("receive_message", function(message_value, sender_id) {
-    if (sender_id === user_id)
+socket.on("receive_message", function(message_value, from_room) {
+    if (from_room === user_room)
     {
         // create message for the user
         create_message(message_value, "user-message");
@@ -30,10 +29,10 @@ function send_message()
         message_value = document.getElementById("message").value;
         if (message_value)
         {
-            document.getElementById("message").value = null;
-            if (room_id)
+            if (to_room)
             {
-                socket.emit('send_message', message_value, user_id, room_id);
+                document.getElementById("message").value = null;
+                socket.emit('send_message', message_value, to_room);
             }
         }
 }

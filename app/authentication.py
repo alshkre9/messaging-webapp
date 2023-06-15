@@ -30,6 +30,7 @@ def sign_in():
                     session["user_id"] = user.id
                     session["username"] = user.username
                     session["filename"] = user.filename
+                    session["room_id"] = int(user.room_id)
                     sess.commit()
                     return(redirect("/"))
         else:
@@ -50,7 +51,10 @@ def sign_up():
                     if check_password_hash(user.hash, password):
                         sess.close()
                         return "username and password already taken"
-                user = User(username=username, hash=generate_password_hash(password))
+                room = Room(model=Room_type.User.value)
+                sess.add(room)
+                sess.flush()
+                user = User(username=username, hash=generate_password_hash(password), room_id=room.id)
                 sess.add(user)
                 sess.flush()
 

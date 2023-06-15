@@ -4,10 +4,11 @@ window.onload = function ()
         function (item) {
             item.addEventListener("click", function ()
             {
-                if (item.id != room_id)
+                if (item.id != to_room)
                 {
-                    room_id = item.id
-                    socket.emit("join", room_id)
+                    document.getElementById("messages").innerHTML = "";
+                    to_room = item.id;
+                    socket.emit("join", to_room);
                 }
             }
             )
