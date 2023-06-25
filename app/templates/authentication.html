@@ -2,25 +2,25 @@
 
 {% block header %}
     <nav>
-        <ul class="flex spc-evenly w-100">
-            <li><button><a href="/sign-in">sign in</a></button></li>
-            <li><button class="default-border"><a href="/sign-up">sign up</a></button></li>
+        <ul class="d-flex justify-content-evenly w-100">
+            <li><button class="bg-transparent btn-hover default-border"><a href="/sign-in">sign in</a></button></li>
+            <li class="ms-3"><button class="default-border"><a href="/sign-up">sign up</a></button></li>
         </ul>
     </nav>
 {% endblock %}
 {% block main %}
-    <div class="flex flex-center-y spc-around mb-25 container-md main-layout">
+    <div class="d-flex justify-content-around mb-25 container-md main-layout pt-5">
         <div class="align-self-center text-center">
             <h1 class="main-text">{{ name }}</h1>
             {% block info %}{% endblock %}
-            <form id="auth-form" action="{{ path }}" method="post" class="pa-20 flex flex-column justify-center align-center text-center" enctype="multipart/form-data">
-                <input type="text" autofocus autocomplete="off" name="username" placeholder="Username" class="form-control mb-3" id="username">
-                <input type="text" autofocus autocomplete="off" name="password" placeholder="Password" class="form-control mb-3" id="password">
+            <form id="auth-form" action="{{ path }}" method="post" class="d-flex flex-column justify-content-center align-items-center text-center pa-3" enctype="multipart/form-data">
+                <input type="text" autofocus autocomplete="off" name="username" placeholder="Username" class="form-control mb-3 bg-secondary text-color" id="username">
+                <input type="text" autofocus autocomplete="off" name="password" placeholder="Password" class="form-control mb-3 bg-secondary text-color" id="password">
                 {% block confirmation %}{% endblock %}
-                <span id="warning" class="text-danger my-1 mb-2">invalid input</span>
-                <button type="button" onclick="valid_authentication()" class="default-border">{{ name }}</button>
+                <span id="warning" class="text-danger my-1 mb-2 d-none">invalid input</span>
+                <button type="button" onclick="valid_authentication()" class="default-border mb-5">{{ name }}</button>
             </form>
         </div>
-        <div class="flex justify-center"><img src="../static/images/82250.jpg" alt="" class="auth-img"></div>
+        <div class="d-flex justify-content-center"><img src="../static/images/gray2.jpg" alt="" class="auth-img"></div>
     </div>
 {% endblock %}

@@ -14,13 +14,11 @@
     <script src="../static/sockets.js"></script>
     <title>{{ app_name}}</title>
 </head>
-<body id="vh1" class="flex flex-column spc-between">
-    <div id="vh2" class="container-xxl flex flex-column">
-            <header>
-                <div class="flex full_width_media">
-                    <div class="flex align-center">
-                        <h2 class="title">{{ app_name }}</h2>
-                    </div>
+<body id="vh1" class="d-flex flex-column justify-content-between bg-background">
+    <div id="vh2" class="container-xxl d-flex flex-column">
+            <header class="d-flex justify-content-between align-items-center bottom-border">
+                <div class="d-flex full_width_media">
+                        <h2 class="text-color me-3 mb-0 py-3">{{ app_name }}</h2>
                     {% block left_nav %}{% endblock %}
                 </div>
                 {% block header %}{% endblock %}

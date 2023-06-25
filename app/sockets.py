@@ -27,7 +27,7 @@ def on_join(room_id):
     join_room(room_id)
 
     with Session(ENGINE) as sess:
-        for m in sess.execute(select(Message).where(or_(Message.from_room == session["room_id"], Message.from_room == room_id)).where(or_(Message.to_room == room_id, Message.to_room == session["room_id"]))).scalars():
+        for m in sess.execute(select(Message).where(or_(Message.from_room == session["room_id"], Message.from_room == room_id)).where(or_(Message.to_room == room_id, Message.to_room == session["room_id"])).order_by(Message.date)).scalars():
             emit("receive_message", (m.value, m.from_room), to=session["room_id"])
 
 @socketio.on("send_message")
