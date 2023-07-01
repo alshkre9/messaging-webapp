@@ -1,6 +1,6 @@
 from app.__init__ import app
 from app.functions import get_valid_filename, valid_username, valid_password, logout_requierd
-from app.db_metadata import *
+from app.db_metadata import ENGINE, User
 
 from flask import session, render_template, request, redirect, url_for
 from sqlalchemy import select
@@ -30,7 +30,6 @@ def sign_in():
                     session["user_id"] = user.id
                     session["username"] = user.username
                     session["filename"] = user.filename
-                    session["room_id"] = int(user.room_id)
                     sess.commit()
                     return(redirect("/"))
         else:
@@ -51,10 +50,8 @@ def sign_up():
                     if check_password_hash(user.hash, password):
                         sess.close()
                         return "username and password already taken"
-                room = Room(model=Room_type.User.value)
-                sess.add(room)
                 sess.flush()
-                user = User(username=username, hash=generate_password_hash(password), room_id=room.id)
+                user = User(username=username, hash=generate_password_hash(password))
                 sess.add(user)
                 sess.flush()
 
