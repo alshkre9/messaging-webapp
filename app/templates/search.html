@@ -3,29 +3,33 @@
 {% block main %}
         <table class="w-100 box-shadow">
             <thead class="w-100">
-                <tr class="flex spc-around w-100">
-                    <th class="w-100 text-center py-4 bottom-border right-border">people</th>
-                    <th class="w-100 text-center py-4 bottom-border ">groups</th>
+                <tr class="d-flex w-100">
+                    <th class="w-100 text-color text-center py-4 bottom-border">people</th>
                 </tr>
             </thead>
             <tbody class="w-100">
-                {% for friend in friends %}
-                    <tr class="flex spc-around w-100 bottom-border">
-                        <td class="flex align-items-center w-100 spc-between right-border p-3">
-                            <div class="flex align-items-center">
-                                <div class="profile-img mr-20" style="background-image: url(../static/images/profile_images/{{ friend.filename }});"></div>
+                {% for user in users %}
+                    <tr class="d-flex w-100 bottom-border">
+                        <td class="d-flex w-50 py-3 align-items-center justify-content-between">
+                            <div class="d-flex align-items-center me-4">
+                                <div class="profile-img me-3" style="background-image: url(../static/images/profile_images/{{ user.filename }});"></div>
                                 <div>
-                                    <p class="mb-0 font-20 main-color">{{ friend.username }}</p>
+                                    <p class="mb-0 text-color">{{ user.username }}</p>
                                 </div>
                             </div>
-                            <form action="/search" method="post" aria-readonly="true">
-                                <input type="hidden" value="{{ friend.id }}" name="id">
-                                <button type="submit" class="bg-primary white-color">add friend</button>
+                            <form action="/search" method="post" aria-readonly="true" class="d-flex align-items-center">
+                                {% if user.id in friends %}
+                                    <input type="hidden" value="{{ user.id }}" name="remove">
+                                    <button type="submit" class="bg-primary white-color">unfriend</button>
+                                {% else %}
+                                    <input type="hidden" value="{{ user.id }}" name="add">
+                                    <button type="submit" class="bg-primary white-color">add friend</button>
+                                {% endif %}
                             </form>
                         </td>
-                        <td class="flex w-100 p-3"></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-{% endblock %}
+        {% endblock %}
+{{ session.close() }}

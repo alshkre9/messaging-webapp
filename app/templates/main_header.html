@@ -16,20 +16,22 @@
                     <div id="note" class="d-flex position-absolute align-items-center justify-content-center bg-danger text-color rounded-circle"></div>
                     <img src="../static/images/bell-svgrepo-com.svg" alt="" class="svg-img">
                 </button>
-                <ul id="sub-menu" class="d-flex flex-column position-absolute bg-extra abs-top-center">
-                    {% for notice in notification %}
-                        <li id="" class="d-flex overflow-hidden  justify-content-space-between bottom-border p-3">
-                            <div class="d-flex align-items-center me-2">
-                                <img class="profile-img mr-10" style="background-image: url(../static/images/profile_images/{{ notice.filename }}); alt="">
-                                <span class="main-color">{{ notice.username }}</span>
-                            </div>
-                            <form action="/accept " method="post" aria-readonly="true">
-                                <input type="hidden" name="user_id" value="{{ notice.id }}">
-                                <button class="bg-primary white-color py-1 px-2 border-radius m-0 pointer-hover">accept</button>
-                            </form>
-                        </li>
-                    {% endfor %}
-                </ul>
+                <div id="sub-menu" class="position-absolute end-0">
+                    <ul class="d-flex flex-column bg-secondary abs-top-center">
+                        {% for notice in notification %}
+                            <li class="d-flex justify-content-space-between p-3">
+                                <div class="d-flex align-items-center me-3">
+                                    <img class="profile-img me-3" style="background-image: url(../static/images/profile_images/{{ notice.filename }}); alt="">
+                                    <span class="text-color">{{ notice.username }}</span>
+                                </div>
+                                <form action="/accept " method="post" aria-readonly="true">
+                                    <input type="hidden" name="user_id" value="{{ notice.id }}">
+                                    <button class="bg-primary white-color py-1 px-2 border-radius m-0 pointer-hover">accept</button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
             <img alt="" class="profile-img ms-3" style="background-image: url(../static/images/profile_images/{{ filename }});">
         </div>
@@ -38,8 +40,12 @@
 {% block left_nav %}
         <nav class="d-flex aling-items-center align-self-stretch">
             <ul>
-                <li class="text-color d-flex h-100 align-items-center p-0 m-0 position-relative border-b-trans"><a href="/friends" class="py-2 px-3">friends</a></li>
-                <!-- <li class="pos-relative border-b-trans"><a href="/groups" class="li-color py-10 px-20">groups</a></li> -->
+                <li class="text-color d-flex h-100 align-items-center p-0 m-0 position-relative border-b-trans">
+                        <a href="/friends" class="py-2 px-3 bg-transparent">friends</a>
+                </li>
+                <li class="text-color d-flex h-100 align-items-center p-0 m-0 position-relative border-b-trans">
+                        <a href="/groups" class="py-2 px-3 bg-transparent">groups</a>
+                </li>
             </ul>
         </nav>
 {% endblock %}

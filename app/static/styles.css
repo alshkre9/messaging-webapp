@@ -1,11 +1,11 @@
 :root {
     --primary-color: rgb(88, 193, 47);
-    /* --background-color: #333333; */
+    --background-color: white;
     --background-color: rgb(35, 35, 35);
     --secondary-color: rgb(6, 2, 8);
     --text-color: rgb(249, 243, 252);
-    --user-color: red;
-    --friend-message: blue;
+    --user-color: var(--primary-color);
+    --friend-message: var(--secondary-color);
 }
 /* change defaults */
 body {
@@ -15,7 +15,7 @@ body {
     padding: 0px;
     min-height: 100vh;
 }
-button {
+button, a {
     padding: 10px 30px;
     color: var(--text-color);
     outline: none;
@@ -33,15 +33,15 @@ button {
 button:hover {
     bottom: 3px;
 }
+a:hover {
+    bottom: 3px;
+}
 ::placeholder {
     color: var(--text-color) !important;
 }
 a {
     text-decoration: none;
     color: var(--text-color);
-    transition-property: all;
-    transition-timing-function: linear;
-    transition-duration: 3s;
 }
 li {
     list-style: none;
@@ -58,12 +58,6 @@ p {
 ul {
     padding: 0;
     margin: 0px;
-}
-footer {
-    background-color: var(--secondary-color);
-    width: 100%;
-    height: 100px;
-    align-self:flex-end;
 }
 h1,h2,h3,h4 {
     color: var(--text-color);
@@ -112,8 +106,8 @@ h1,h2,h3,h4 {
     width: 0px;
     position: absolute;
     right: 50%;
-    background-color: var(--main-color);
-    bottom: 0px;
+    background-color: var(--primary-color);
+    bottom: -1px;
     transition-duration: 0.1s;
     transition-timing-function: linear;
     transition-property: all;
@@ -127,11 +121,10 @@ h1,h2,h3,h4 {
     width: 20px;
     height: 20px;
     top: -10px;
-    left: 50%;
-    background-color: var(--side-stuff);
-    transform: rotate(45deg) translate(-50%, 0);
+    right: 0px;
+    background-color: var(--secondary-color);
     position: absolute;
-    transform-origin: left;
+    transform: rotate(45deg) translate(0%, 0%);
 }
 .pointer-hover {
     cursor: pointer;
@@ -147,9 +140,38 @@ h1,h2,h3,h4 {
     from {top: 165%; opacity: 1;}
     to {top: 100%; opacity: 0;}
 }
+@keyframes go-up-down {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: 25px;
+    }
+    100% {
+        top: 0px;
+    }
+}
 /* end */
 
 /* specification */
+#menu {
+    width: 50%;
+}
+#content {
+    width: 100%;
+    display: flex;
+}
+#active-chat {
+    display: none;
+    border-bottom: 2px solid var(--secondary-color);
+}
+#resize-button {
+    display: none;
+    transform: rotate(180deg);
+}
+#message-form {
+    background-color: rgb(49, 48, 48) !important;
+}
 .auth-img {
     width: 500px;
 }
@@ -161,6 +183,9 @@ h1,h2,h3,h4 {
 }
 .default-border {
     border: 2px solid var(--primary-color);
+}
+.default-border-light {
+    border: 2px solid var(--text-color);
 }
 .right-border {
     border-right: 1px solid var(--text-color);
@@ -182,6 +207,11 @@ h1,h2,h3,h4 {
     text-transform: none;
     max-width: 50%;
     word-wrap: anywhere;
+    border-radius: 20px;
+    margin: 0px 5px 5px;
+}
+.outline-none {
+    outline: none !important;
 }
 .user-message {
     background-color: var(--user-color);
@@ -189,6 +219,10 @@ h1,h2,h3,h4 {
 }
 .friend-message {
     background-color: var(--friend-message);
+}
+.footer-img {
+    width: 38px !important;
+    height: 38px !important;
 }
 .profile-img {
     width: 52px;
@@ -208,7 +242,11 @@ h1,h2,h3,h4 {
 
 #sub-menu {
     display: none;
+    width: fit-content;
+    height: fit-content;
+    /* top: 100%; */
     top: 165%;
+    transform: translate(0%, 0%);
     animation-duration: 0.3s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
@@ -228,6 +266,10 @@ h1,h2,h3,h4 {
     }
     .auth-img {
         width: 400px;
+        animation-name: none !important;
+    }
+    #menu {
+        min-width: 45%;
     }
 }
 @media screen and (max-width: 768px) {
@@ -241,6 +283,7 @@ h1,h2,h3,h4 {
     /* this style for main_header file */
     .full_width_media{width: 100%; justify-content: center;}
     #menu {width: 100%; border: none;}
-    #content {width: 0%;}
+    #content {width: 0%; display: none;}
+    #resize-button {display: block;}
 }
 /* end */

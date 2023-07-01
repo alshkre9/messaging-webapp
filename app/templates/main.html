@@ -2,20 +2,27 @@
 
 {% block main %}
     <div class="d-flex h-100 overflow-hidden right-border left-border">
-        <div class="overflow-auto right-border position-relative w-50" id="menu">
+        <div id="menu" class="overflow-auto right-border position-relative">
             <ul class="d-flex flex-column align-items-start" id="friends-groups">
                 {% block friends_groups %}{% endblock %}
             </ul>
         </div>
-        <div class="d-flex flex-column h-100 w-100"  id="content">
+        <div id="content" class="flex-column h-100">
+            <div id="active-chat" class="w-100 p-2 justify-content-between align-items-center">
+                <button id="resize-button" onclick="resize()" type="button" class="svg-img"><img src="../static/images/arrow-right-long-solid-white.svg" alt="" class="svg-img"></button>
+                <div class="d-flex align-items-center ms-auto">
+                    <p id="friend-name" class="m-0 text-color"></p>
+                    <img id="friend-picture" class="profile-img ms-3" src="" alt="">
+                </div>
+            </div>
             <div class="overflow-auto h-100 w-100">
-                <ul class="d-flex flex-column justify-content-end min-h-100" id="messages">
+                <ul id="messages" class="d-flex flex-column justify-content-end min-h-100" >
                     {% block messages %}{% endblock %}
                 </ul>
             </div>
-            <div class="pa-10 w-100 bg-extra d-flex align-items-center">
-                <button type="submit" onclick="send_message()" class="bg-transparent"><img src="../static/images/paper-plane-solid.svg" class="svg-img" alt=""></button>
-                <input type="text" placeholder="Message" class="bg-transparent p-2 w-100 border-radius" id="message">
+            <div id="message-form" class="p-2 w-100 bg-extra d-flex align-items-center">
+                <button type="submit" onclick="send_message()" class="bg-transparent"><img src="../static/images/paper-plane-solid-white.svg" class="svg-img" alt=""></button>
+                <input type="text" placeholder="Message" class="bg-transparent p-2 w-100 border-radius text-color default-border-light outline-none" id="message">
             </div>
         </div>
     </div>

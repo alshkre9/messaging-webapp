@@ -1,42 +1,69 @@
+const mediaquery = window.matchMedia("(max-width: 576px)")
 window.onload = function ()
 {
     document.querySelectorAll("#friends-groups li").forEach(
         function (item) {
             item.addEventListener("click", function ()
             {
-                if (item.id != to_room)
+                if (item.id != room_id)
                 {
                     document.getElementById("messages").innerHTML = "";
-                    to_room = item.id;
-                    socket.emit("join", to_room);
+                    room_id = item.id;
+                    socket.emit("join", room_id);
+                    document.getElementById("active-chat").style.setProperty("display", "flex")
+                    document.getElementById("friend-name").innerText = document.getElementById("friend-" + item.id).innerText;
+                    document.getElementById("friend-picture").style.backgroundImage = document.getElementById("friend-" + item.id + "-picture").style.getPropertyValue("background-image");
+                    if (mediaquery.matches)
+                    {
+                        document.getElementById("menu").setAttribute("style", "width: 0% ; min-width: 0%") 
+                        document.getElementById("content").style.setProperty("width", "100%") 
+                        document.getElementById("content").style.setProperty("display", "flex") 
+                    }
                 }
             }
             )
         }
-    )
-
-    var pathname = window.location.pathname;
-    if (pathname != "/sign-in" && pathname != "/sign-up")
-    {
-        document.getElementById("vh2").style.setProperty("height", "100vh");
-    }
-
-    try
-    {
+        )   
         
-        document.getElementById("note").innerText = parseInt(document.querySelectorAll("#sub-menu > li").length); 
-        n = parseInt(document.getElementById("note").innerText); 
-        if (n > 99)
+        var pathname = window.location.pathname;
+        if (pathname != "/sign-in" && pathname != "/sign-up")
         {
-            document.getElementById("note").innerText = 99;
+            document.getElementById("vh2").style.setProperty("height", "100vh");
+        }
+        
+        try
+        {
+            
+            document.getElementById("note").innerText = parseInt(document.querySelectorAll("#sub-menu > ul > li").length); 
+            n = parseInt(document.getElementById("note").innerText); 
+            if (n > 99)
+            {
+                document.getElementById("note").innerText = 99;
         }
         else if (n == 0 || isNaN(n))
         {
             document.getElementById("note").style.setProperty("display", "none", "important")
         }
-        }
+    }
     catch(TypeError){}
+    
+}
 
+window.onresize = function ()
+{
+    if (parseInt(mediaquery.media.replace(/[^\d.]/g, "")) < window.innerWidth)
+    {
+        document.getElementById("menu").style = null;
+        document.getElementById("content").style = null; 
+    }
+}
+
+function resize()
+{
+    room_id = null
+    document.getElementById("menu").style = null;
+    document.getElementById("content").style = null; 
+    document.getElementById("content").style = null; 
 }
 
 function create_message(message_value, class_name)
@@ -53,15 +80,15 @@ function valid_authentication()
     let pattren_password = /^.{8,28}$/;
     username = document.getElementById("username").value;
     password = document.getElementById("password").value;
-    confiramtion = null;
+    confirmation = null;
     submit_flag = false;
     try {
-        confirmation = document.getElementById("confirmation").value
-        if (toString(password) === toString(confiramtion))
+        confirmation = document.getElementById("confirmation").value;
+        if (password === confirmation)
         {
             if (pattren_username.test(username) && pattren_password.test(password))
             {
-                submit_flag = true
+                submit_flag = true;
             }
         }
     }
@@ -87,7 +114,7 @@ function valid_authentication()
 notice_flag = 1
 function show_notice()
 {
-    if (notice_flag == 1 && document.getElementById("note").innerText > 0)
+    if (notice_flag == 1 && parseInt(document.getElementById("note").innerText) > 0)
     {
         document.getElementById("sub-menu").style.display = "flex";
         document.getElementById("sub-menu").style.animationName = "go-down";
@@ -100,4 +127,8 @@ function show_notice()
         notice_flag *= -1
     }
     return
+}
+
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
 }
