@@ -2,8 +2,13 @@ from flask import Flask
 from flask_socketio import SocketIO
 import flask_session
 
+import os
+import os.path
+
 APP_NAME = "main"
-PROFILE_IMAGES = "C:\Github\\app\\app\static\images\profile_images"
+PROFILE_IMAGES = "app\static\images\profile_images"
+if not os.path.exists(PROFILE_IMAGES):
+    os.mkdir(PROFILE_IMAGES)
 PROFILE_IMAGES_DIMENSIONS = (128, 128)
 ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 
