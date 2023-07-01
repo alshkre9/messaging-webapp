@@ -11,8 +11,8 @@ from sqlalchemy.orm import Session
 @socketio.on("connect")
 @login_required_websocket
 def connect(null):
-    join_room(session["room_id"])
-    emit("user_room", session["room_id"])
+    join_room(int(session["user_id"]))
+    emit("user_room", session["user_id"])
 
 @socketio.on("join")
 @login_required_websocket
@@ -27,14 +27,15 @@ def on_join(room_id):
     join_room(room_id)
 
     with Session(ENGINE) as sess:
-        for m in sess.execute(select(Message).where(or_(Message.from_room == session["room_id"], Message.from_room == room_id)).where(or_(Message.to_room == room_id, Message.to_room == session["room_id"])).order_by(Message.date)).scalars():
-            emit("receive_message", (m.value, m.from_room), to=session["room_id"])
+        query = select(Message).where(or_(Message.from_ == session["user_id"], Message.from_ == room_id)).where(or_(Message.to == room_id, Message.to == session["user_id"])).order_by(Message.date)
+        for m in sess.execute(query).scalars():
+            emit("receive_message", (m.value, m.from_), to=int(session["user_id"]))
 
 @socketio.on("send_message")
-def message(value, to_room):
+def message(value, to):
     with Session(ENGINE) as sess:
-        m = Message(from_room=session["room_id"], to_room=to_room, value=value)
+        m = Message(from_=session["user_id"], to=to, value=value)
         sess.add(m)
         sess.commit()
-    socketio.emit("receive_message", (value, to_room), to=int(to_room))
-    socketio.emit("receive_message", (value, session["room_id"]), to=session["room_id"])
+    socketio.emit("receive_message", (value, session["user_id"]), to=int(to))
+    socketio.emit("receive_message", (value, session["user_id"]), to=int(session["user_id"]))
