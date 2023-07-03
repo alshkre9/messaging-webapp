@@ -172,6 +172,9 @@ h1,h2,h3,h4 {
 #message-form {
     background-color: rgb(49, 48, 48) !important;
 }
+#warning {
+    display: none;
+}
 .auth-img {
     width: 500px;
 }
