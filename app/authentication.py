@@ -1,6 +1,6 @@
 from app.__init__ import app
 from app.functions import get_valid_filename, valid_username, valid_password, logout_requierd
-from app.db_metadata import ENGINE, User
+from app.db_metadata import ENGINE, User, Friendship
 
 from flask import session, render_template, request, redirect, url_for
 from sqlalchemy import select
@@ -61,6 +61,11 @@ def sign_up():
                         f.thumbnail(app.config["PROFILE_IMAGES_DIMENSIONS"])
                         f.save(join(app.config["PROFILE_IMAGES"], filename))
                         user.filename = filename
+                if not user.id == 1:
+                    friendship1 = Friendship(user_id=1, friend_id=user.id)
+                    friendship2 = Friendship(user_id=user.id , friend_id=1)
+                    sess.add(friendship1)
+                    sess.add(friendship2)
                 sess.commit()
                 return redirect(url_for("sign_in"))
         else:
