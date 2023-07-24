@@ -4,8 +4,9 @@ from sqlalchemy.orm import DeclarativeBase
 
 from os import environ
 
-password = environ.get('mysql_password')
-ENGINE = create_engine(f"mysql://root:{password}@localhost:3306/website")
+# password = environ.get('mysql_password')
+import dns.resolver
+ENGINE = create_engine(f"mysql://root:root@:3306/website", pool_pre_ping=True)
 
 class Base(DeclarativeBase):
     pass

@@ -1,6 +1,7 @@
 Flask==2.2.3
 Flask_SocketIO==5.3.4
-Pillow==9.4.0
+Flask_Session==0.4.0
 Pillow==10.0.0
 SQLAlchemy==2.0.10
 Werkzeug==2.2.3
+mysqlclient==2.1.1
