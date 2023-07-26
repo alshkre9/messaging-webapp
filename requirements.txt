@@ -5,3 +5,4 @@ Pillow==10.0.0
 SQLAlchemy==2.0.10
 Werkzeug==2.2.3
 mysqlclient==2.1.1
+docker==6.1.3
