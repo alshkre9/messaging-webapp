@@ -1,10 +1,20 @@
 from sqlalchemy.sql import func
 from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime
 from sqlalchemy.orm import DeclarativeBase
+import time
 
 from os import environ
+import dns.resolver
 
-db_ip = ''
+while True:
+    try:
+        db_ip = dns.resolver.query("database", "A")[0]
+        break
+    except dns.resolver.LifetimeTimeout:
+        time.sleep(1)
+        continue
+
+time.sleep(3)
 ENGINE = create_engine(f"mysql://root:root@{db_ip}:3306/website", pool_pre_ping=True)
 
 class Base(DeclarativeBase):
