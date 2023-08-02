@@ -5,6 +5,8 @@ services:
     image: mysql:8
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d/
     environment:
       MYSQL_ROOT_PASSWORD: root
       ports: 3306:3306
@@ -13,12 +15,14 @@ services:
 
   web:
     build: .
+    volumes:
+      - .:/usr/src/app
     ports:
       - 8001:5000
     networks:
       - network
-    depends_on:
-      - database
+    depends_on: 
+    - database
 
 networks:
   network:

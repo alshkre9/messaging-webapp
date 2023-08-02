@@ -1,3 +1,3 @@
-CREATE DATABASE IF NOT EXISTS website;
+CREATE DATABASE IF NOT EXISTS py_db;
 
-USE website;
+USE py_db;

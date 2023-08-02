@@ -14,8 +14,7 @@ while True:
         time.sleep(1)
         continue
 
-time.sleep(3)
-ENGINE = create_engine(f"mysql://root:root@{db_ip}:3306/website", pool_pre_ping=True)
+ENGINE = create_engine(f"mysql://root:root@{db_ip}:3306/py_db", pool_pre_ping=True)
 
 class Base(DeclarativeBase):
     pass
