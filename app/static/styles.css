@@ -1,9 +1,9 @@
 :root {
-    --primary-color: rgb(88, 193, 47);
+    --primary-color: #8fb3ff;
     --background-color: white;
-    --background-color: rgb(35, 35, 35);
-    --secondary-color: rgb(6, 2, 8);
-    --text-color: rgb(249, 243, 252);
+    --secondary-color: #ebf1ff;
+    --shade-color: #e9ecef;
+    --text-color: #04070c;
     --user-color: var(--primary-color);
     --friend-message: var(--secondary-color);
 }
@@ -184,20 +184,14 @@ h1,h2,h3,h4 {
     padding: 0px;
     background-color: transparent;
 }
+.main-border {
+    border: 2px solid var(--shade-color);
+}
 .default-border {
     border: 2px solid var(--primary-color);
 }
-.default-border-light {
-    border: 2px solid var(--text-color);
-}
-.right-border {
-    border-right: 1px solid var(--text-color);
-}
-.left-border {
-    border-left: 1px solid var(--text-color);
-}
 .bottom-border {
-    border-bottom: 1px solid var(--text-color);
+    border-bottom: 2px solid var(--shade-color);
 }
 .border-radius {
     border-radius: 20px;
