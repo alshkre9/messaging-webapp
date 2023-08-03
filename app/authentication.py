@@ -35,7 +35,7 @@ def sign_in():
         else:
             return "invalid username or password".title()
 
-    return render_template("sign_in.html", app_name=app.config["APP_NAME"], path="/sign-in", name="sign in")
+    return render_template("authentication.sign_in.html", app_name=app.config["APP_NAME"], path="/sign-in", name="sign in")
 
 @app.route("/sign-up", methods=["GET", "POST"])
 @logout_requierd
@@ -71,4 +71,4 @@ def sign_up():
         else:
             return "invalid username or password".title()
 
-    return render_template("sign_up.html", app_name=app.config["APP_NAME"], path="/sign-up", name="sign up")
+    return render_template("authentication.sign_up.html", app_name=app.config["APP_NAME"], path="/sign-up", name="sign up")
