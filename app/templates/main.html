@@ -1,29 +1,27 @@
-{% extends "main_header.html" %}
+{% extends "layout.html" %}
 
 {% block main %}
-    <div class="d-flex h-100 overflow-hidden right-border left-border">
-        <div id="menu" class="overflow-auto right-border position-relative">
-            <ul class="d-flex flex-column align-items-start" id="friends-groups">
-                {% block friends_groups %}{% endblock %}
+    <div class="main d-inline-block  vh-100">
+        <nav class="bg-primary py-4 px-5 h-100">
+            <ul class="d-flex flex-column justify-content-between h-100">
+                <!-- <li class="mb-2 h-auto">
+                </li> -->
+                <li class="mb-2 h-auto border-bottom">
+                    <ul class="d-flex flex-column w-100">
+                        <li><a href="" class="text-white white-bg-on-hover py-2 px-5 border-radius w-100 text-center d-flex mb-2"><img src="../static/images/profile-round-1342-svgrepo-com.svg" alt="" class="svg-img bg-primary me-2">Profile</a></li>
+                        <li><a href="" class="text-white white-bg-on-hover py-2 px-5 border-radius w-100 text-center d-flex"><img src="../static/images/message-regular.svg" alt="" class="svg-img bg-primary me-2">Message</a></li>
+                    </ul>
+                </li>
+                <!-- <li class="mb-2 mt-auto h-auto">
+                </li> -->
+                <li class="h-auto">
+                    <ul class="d-flex flex-column w-100">
+                        <li><a href="" class="text-white white-bg-on-hover py-2 px-5 border-radius w-100 text-center mb-2"><img src="../static/images/gear-solid.svg" alt="" class="svg-img bg-primary me-2">Settings</a></li>
+                        <li><a href="" class="text-white white-bg-on-hover py-2 px-5 border-radius w-100 text-center"><img src="../static/images/arrow-right-from-bracket-solid.svg" alt="" class="svg-img bg-primary me-2">sign out</a></li>
+                    </ul>
+                </li>
             </ul>
-        </div>
-        <div id="content" class="flex-column h-100">
-            <div id="active-chat" class="w-100 p-2 justify-content-between align-items-center">
-                <button id="resize-button" onclick="resize()" type="button" class="svg-img"><img src="../static/images/arrow-right-long-solid-white.svg" alt="" class="svg-img"></button>
-                <div class="d-flex align-items-center ms-auto">
-                    <p id="friend-name" class="m-0 text-color"></p>
-                    <img id="friend-picture" class="profile-img ms-3" src="" alt="">
-                </div>
-            </div>
-            <div class="overflow-auto h-100 w-100">
-                <ul id="messages" class="d-flex flex-column justify-content-end min-h-100" >
-                    {% block messages %}{% endblock %}
-                </ul>
-            </div>
-            <div id="message-form" class="p-2 w-100 bg-extra d-flex align-items-center">
-                <button type="submit" onclick="send_message()" class="bg-transparent"><img src="../static/images/paper-plane-solid-white.svg" class="svg-img" alt=""></button>
-                <input type="text" placeholder="Message" class="bg-transparent p-2 w-100 border-radius text-color default-border-light outline-none" id="message">
-            </div>
-        </div>
+        </nav>
+        {% block content %}{% endblock %}
     </div>
 {% endblock %}
