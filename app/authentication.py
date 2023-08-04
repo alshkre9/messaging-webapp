@@ -1,5 +1,5 @@
 from app.__init__ import app
-from app.functions import get_valid_filename, valid_username, valid_password, logout_requierd
+from app.helper import get_valid_filename, valid_username, valid_password, logout_requierd
 from app.db_metadata import ENGINE, User, Friendship
 
 from flask import session, render_template, request, redirect, url_for

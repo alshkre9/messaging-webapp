@@ -1,5 +1,5 @@
 from app.__init__ import socketio
-from app.functions import login_required_websocket
+from app.helper import login_required_websocket
 from app.db_metadata import ENGINE, Message
 
 from flask import session

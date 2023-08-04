@@ -1,5 +1,5 @@
 from app. __init__ import app
-from app.functions import login_required_http, get_notification
+from app.helper import login_required_http, get_notification
 from app.db_metadata import ENGINE, User, Friendshiprequest, Friendship
 
 from flask import redirect, render_template, session, request
@@ -31,7 +31,7 @@ def friends():
 	sess = Session(ENGINE)
 	stmt = select(User, Friendship).join(Friendship, User.id == Friendship.friend_id).where(Friendship.user_id == session["user_id"])
 	friends = sess.execute(stmt)
-	return render_template("friends.html", app_name=app.config["APP_NAME"], filename=session["filename"], friends=friends.all(), user_id=session["user_id"], notification=get_notification(), session=sess)
+	return render_template("main.html", app_name=app.config["APP_NAME"], filename=session["filename"], friends=friends.all(), user_id=session["user_id"], notification=get_notification(), session=sess)
 
 # @app.route("/groups", methods=["POST", "GET"])
 # @login_required_http
