@@ -3,7 +3,8 @@
     --background-color: white;
     --secondary-color: #ebf1ff;
     --shade-color: #e9ecef;
-    --text-color: #04070c;
+    --text-color-light: white;
+    --text-color-dark: #04070c;
     --user-color: var(--primary-color);
     --friend-message: var(--secondary-color);
 }
@@ -17,7 +18,7 @@ body {
 }
 button, .link {
     padding: 10px 30px;
-    color: var(--text-color);
+    color: var(--text-color-light);
     outline: none;
     border: none;
     border-radius: 15px;
@@ -88,8 +89,11 @@ h1,h2,h3,h4 {
 .bg-primary {
     background-color: var(--primary-color) !important;
 }
-.text-color {
-    color: var(--text-color) !important;
+.text-color-light {
+    color: var(--text-color-light) !important;
+}
+.text-color-dark {
+    color: var(--text-color-dark) !important;
 }
 .bg-secondary {
     background-color: var(--secondary-color) !important;

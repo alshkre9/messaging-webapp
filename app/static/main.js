@@ -49,23 +49,6 @@ window.onload = function ()
     
 }
 
-window.onresize = function ()
-{
-    if (parseInt(mediaquery.media.replace(/[^\d.]/g, "")) < window.innerWidth)
-    {
-        document.getElementById("menu").style = null;
-        document.getElementById("content").style = null; 
-    }
-}
-
-function resize()
-{
-    room_id = null
-    document.getElementById("menu").style = null;
-    document.getElementById("content").style = null; 
-    document.getElementById("content").style = null; 
-}
-
 function create_message(message_value, class_name)
 {
     const li = document.createElement("li");
@@ -109,26 +92,4 @@ function valid_authentication()
         document.getElementById("warning").style.display = "block"
     }
     return
-}
-
-notice_flag = 1
-function show_notice()
-{
-    if (notice_flag == 1 && parseInt(document.getElementById("note").innerText) > 0)
-    {
-        document.getElementById("sub-menu").style.display = "flex";
-        document.getElementById("sub-menu").style.animationName = "go-down";
-        notice_flag *= -1
-    }
-    else
-    {
-        document.getElementById("sub-menu").style.display = null
-        document.getElementById("sub-menu").style.animationName = "go-up";
-        notice_flag *= -1
-    }
-    return
-}
-
-if ( window.history.replaceState ) {
-    window.history.replaceState( null, null, window.location.href );
 }
