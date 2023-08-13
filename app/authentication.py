@@ -40,34 +40,14 @@ def sign_in():
 @app.route("/sign-up", methods=["GET", "POST"])
 @logout_requierd
 def sign_up():
-
     if "POST" == request.method:
         password = request.form.get("password")
         username = request.form.get("username")
+        filename = request.form.get("file")
         if valid_username(username) and valid_password(password):
-            with Session(ENGINE) as sess:
-                for user in sess.execute(select(User).where(User.username == username)).scalars():
-                    if check_password_hash(user.hash, password):
-                        sess.close()
-                        return "username and password already taken"
-                sess.flush()
-                user = User(username=username, hash=generate_password_hash(password))
-                sess.add(user)
-                sess.flush()
-
-                if (f := request.files["file"]):
-                    if (filename := get_valid_filename(f.filename, user.id)):
-                        f = Image.open(f)
-                        f.thumbnail(app.config["PROFILE_IMAGES_DIMENSIONS"])
-                        f.save(join(app.config["PROFILE_IMAGES"], filename))
-                        user.filename = filename
-                if not user.id == 1:
-                    friendship1 = Friendship(user_id=1, friend_id=user.id)
-                    friendship2 = Friendship(user_id=user.id , friend_id=1)
-                    sess.add(friendship1)
-                    sess.add(friendship2)
-                sess.commit()
-                return redirect(url_for("sign_in"))
+            if not (user := User.create(username, password, filename)):
+                return "username and password already taken"
+            return redirect(url_for("sign_in"))
         else:
             return "invalid username or password".title()
 

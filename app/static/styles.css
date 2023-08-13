@@ -5,8 +5,8 @@
     --shade-color: #e9ecef;
     --text-color-light: white;
     --text-color-dark: #04070c;
-    --user-color: var(--primary-color);
-    --friend-message: var(--secondary-color);
+    --user-color: var(--secondary-color);
+    --friend-message: var(--primary-color);
 }
 /* change defaults */
 body {

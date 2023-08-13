@@ -1,7 +1,15 @@
+from app.__init__ import app
+
 from sqlalchemy.sql import func
-from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime, select
+from sqlalchemy.orm import DeclarativeBase, Session
+from werkzeug.security import check_password_hash, generate_password_hash
+from app.helper import get_valid_filename
 import time
+from PIL import Image
+from os.path import join
+
+
 
 from os import environ
 import dns.resolver
@@ -26,6 +34,31 @@ class User(Base):
     username = Column("username", VARCHAR(28), nullable=False)
     hash = Column("hash", Text, nullable=False)
     filename = Column("filename", VARCHAR(30), nullable=False, default="default.jpg")
+
+    @staticmethod
+    def create(username, password, filename) -> bool:
+        """
+            create user enitiy and
+            return true if was created false otherwise
+            can't return user entity because the instance in detached status
+        """
+        with Session(ENGINE) as sess:
+            for user in sess.execute(select(User).where(User.username == username)).scalars():
+                if check_password_hash(user.hash, password):
+                    sess.close()
+                    return None
+            user = User(username=username, hash=generate_password_hash(password), filename=filename)
+            sess.add(user)
+            # add filename to user entity
+            if filename:
+                if (filename := get_valid_filename(filename, user.id)):
+                    filename = Image.open(filename)
+                    filename.thumbnail(app.config["PROFILE_IMAGES_DIMENSIONS"])
+                    filename.save(join(app.config["PROFILE_IMAGES"], filename))
+                    user.filename = filename
+            sess.commit()
+            return True
+
 
 class Friendship(Base):
     __tablename__ = "friendships"

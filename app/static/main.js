@@ -24,29 +24,6 @@ window.onload = function ()
             )
         }
         )   
-        
-        var pathname = window.location.pathname;
-        if (pathname != "/sign-in" && pathname != "/sign-up")
-        {
-            document.getElementById("vh2").style.setProperty("height", "100vh");
-        }
-        
-        try
-        {
-            
-            document.getElementById("note").innerText = parseInt(document.querySelectorAll("#sub-menu > ul > li").length); 
-            n = parseInt(document.getElementById("note").innerText); 
-            if (n > 99)
-            {
-                document.getElementById("note").innerText = 99;
-        }
-        else if (n == 0 || isNaN(n))
-        {
-            document.getElementById("note").style.setProperty("display", "none", "important")
-        }
-    }
-    catch(TypeError){}
-    
 }
 
 function create_message(message_value, class_name)
