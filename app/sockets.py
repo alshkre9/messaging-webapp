@@ -33,9 +33,6 @@ def on_join(room_id):
 
 @socketio.on("send_message")
 def message(value, to):
-    with Session(ENGINE) as sess:
-        m = Message(from_=session["user_id"], to=to, value=value)
-        sess.add(m)
-        sess.commit()
+    Message.create(from_=session["user_id"], to=to, value=value)
     socketio.emit("receive_message", (value, session["user_id"]), to=int(to))
     socketio.emit("receive_message", (value, session["user_id"]), to=int(session["user_id"]))

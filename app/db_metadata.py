@@ -4,11 +4,10 @@ from sqlalchemy.sql import func
 from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime, select
 from sqlalchemy.orm import DeclarativeBase, Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from app.helper import get_valid_filename
+from app.helper import get_valid_filename, valid_password, valid_username
 import time
 from PIL import Image
 from os.path import join
-
 
 
 from os import environ
@@ -59,13 +58,16 @@ class User(Base):
             sess.commit()
             return True
 
-
-class Friendship(Base):
-    __tablename__ = "friendships"
-
-    id = Column("id", Integer, primary_key=True)
-    user_id = Column("user_id", Integer, ForeignKey("users.id"), nullable=False)
-    friend_id = Column("friend_id", Integer, ForeignKey("users.id"), nullable=False)
+    @staticmethod
+    def get(username, password) -> "User":
+        if valid_username(username) and valid_password(password):
+            sess = Session(ENGINE)
+            sess.expire_on_commit = False
+            stmt = select(User).where(User.username == username)
+            for user in sess.execute(stmt).scalars():
+                if check_password_hash(user.hash, password):
+                    return [user, Session]
+            return None
 
 class Message(Base):
     __tablename__ = "messages"
@@ -76,15 +78,19 @@ class Message(Base):
     value = Column("value", Text, nullable=False)
     date = Column("date", DateTime, server_default=func.now())
 
-class Friendshiprequest(Base):
-    __tablename__ = "requests"
+    @staticmethod
+    def create(from_, to, value) -> bool:
+        with Session(ENGINE) as sess:
+            message = Message(from_=from_, to=to, value=value)
+            sess.add(message)
+            sess.commit()
+            return True
 
-    id = Column("id", Integer, primary_key=True)
-    sender_id = Column("sender_id", Integer, ForeignKey("users.id"), nullable=False)
-    receiver_id = Column("receiver_id", Integer, ForeignKey("users.id"), nullable=False)
+    @staticmethod
+    def get():
+        with Session(ENGINE) as sess:
+            return sess.execute(select(Message).order_by(Message.date)).scalars()
 
-# class Group(Base):
-#     __tablename__ = "groups"
 
 # Base.metadata.drop_all(ENGINE)
 Base.metadata.create_all(ENGINE)

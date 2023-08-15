@@ -1,5 +1,5 @@
 from app.__init__ import app
-from app.db_metadata import ENGINE, Friendshiprequest, User
+# from app.db_metadata import ENGINE, Friendshiprequest, User
 
 from flask import redirect, session, url_for
 from flask_socketio import disconnect
@@ -57,5 +57,4 @@ def valid_password(password: str) -> bool:
     return (true := engine.search(password))
 
 def get_notification():
-    sess = Session(ENGINE)
-    return sess.execute(select(User).where(User.id.in_(select(Friendshiprequest.sender_id).where(Friendshiprequest.receiver_id == session["user_id"])))).scalars()
+    return []
