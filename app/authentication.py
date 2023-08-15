@@ -16,10 +16,10 @@ def sign_in():
         username = request.form.get("username")
         password = request.form.get("password")
         if valid_username(username) and valid_password(password):
-            if user := User.get(username=username, password=password):
-                session["user_id"] = user.id
-                session["username"] = user.username
-                session["filename"] = user.filename
+            if pair := User.get(username=username, password=password):
+                session["user_id"] = pair["user"].id
+                session["username"] = pair["user"].username
+                session["filename"] = pair["user"].filename
                 return(redirect("/"))
         else:
             return "invalid username or password".title()
@@ -29,6 +29,7 @@ def sign_in():
 @app.route("/sign-up", methods=["GET", "POST"])
 @logout_requierd
 def sign_up():
+    return "hello"
     if "POST" == request.method:
         password = request.form.get("password")
         username = request.form.get("username")

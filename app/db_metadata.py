@@ -66,7 +66,7 @@ class User(Base):
             stmt = select(User).where(User.username == username)
             for user in sess.execute(stmt).scalars():
                 if check_password_hash(user.hash, password):
-                    return [user, Session]
+                    return {"user": user, "session": Session}
             return None
 
 class Message(Base):

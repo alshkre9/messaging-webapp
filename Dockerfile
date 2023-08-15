@@ -9,6 +9,7 @@ RUN apt-get install mysql-server mysql-client -y
 RUN apt-get install gcc libmysqlclient-dev -y 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+ENV FLASK_DEBUG="1"
 EXPOSE 5000
 
 COPY . .

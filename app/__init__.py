@@ -26,6 +26,7 @@ app.config["SESSION_PERMANENT"] = False
 # add support for server side session
 flask_session.Session(app)
 
+app.debug = True
 # make flask manage the session
 socketio = SocketIO(app, manage_session=False) 
 
