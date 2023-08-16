@@ -9,8 +9,7 @@ RUN apt-get install mysql-server mysql-client -y
 RUN apt-get install gcc libmysqlclient-dev -y 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN  apt-get remove python-watchdog 
-
+ENV FLASK_ENV=development
 # COPY . .
 
 ENTRYPOINT [ "python3", "-m", "flask", "run", "--debug", "--host=0.0.0.0", "--reload"]
