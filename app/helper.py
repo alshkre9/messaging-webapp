@@ -1,5 +1,4 @@
-from app.__init__ import app
-# from app.db_metadata import ENGINE, Friendshiprequest, User
+from __init__ import app
 
 from flask import redirect, session, url_for
 from flask_socketio import disconnect

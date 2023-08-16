@@ -1,6 +1,6 @@
-from app. __init__ import app
-from app.helper import login_required_http
-from app.db_metadata import Message
+from  __init__ import app
+from helper import login_required_http
+from models import Message
 
 from flask import redirect, render_template, session
 
@@ -11,10 +11,9 @@ def index():
 @app.route("/chats", methods=["GET"])
 @login_required_http
 def friends():
-	messages = Message.get()
-	return render_template("main.chats.html", app_name=app.config["APP_NAME"], messages=messages)
+	return render_template("main.chats.html", app_name=app.config["APP_NAME"], messages=Message.get())
 
-@app.route("/hello", methods=["GET"])
+@app.route("/profile", methods=["GET"])
 @login_required_http
-def search():
+def profile():
 	return "hello"

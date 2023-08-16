@@ -1,10 +1,10 @@
-from app.__init__ import app
+from __init__ import app
 
 from sqlalchemy.sql import func
 from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime, select
 from sqlalchemy.orm import DeclarativeBase, Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from app.helper import get_valid_filename, valid_password, valid_username
+from helper import get_valid_filename, valid_password, valid_username
 import time
 from PIL import Image
 from os.path import join
@@ -73,15 +73,14 @@ class Message(Base):
     __tablename__ = "messages"
 
     id = Column("id", Integer, primary_key=True)
-    from_ = Column("from_room", Integer, ForeignKey("users.id"), nullable=False)
-    to = Column("to_room", Integer, ForeignKey("users.id"), nullable=False)
+    from_ = Column("user_id", Integer, ForeignKey("users.id"), nullable=False)
     value = Column("value", Text, nullable=False)
     date = Column("date", DateTime, server_default=func.now())
 
     @staticmethod
-    def create(from_, to, value) -> bool:
+    def create(from_, value) -> bool:
         with Session(ENGINE) as sess:
-            message = Message(from_=from_, to=to, value=value)
+            message = Message(from_=from_, value=value)
             sess.add(message)
             sess.commit()
             return True

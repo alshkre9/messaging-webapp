@@ -3,32 +3,12 @@
 {% block content %}
     <div class="h-100 w-100 d-flex flex-column">
         <div class="overflow-auto w-100 h-100">
-            <ul class="d-flex flex-column h-100 w-100 ">
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message friend-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
-                <li class="message user-message">hello</li>
+            <ul id="messages" class="d-flex flex-column h-100 w-100 ">
             </ul>
         </div>
         <div>
             <input type="text" id="message">
-            <button type="button" id="submit-message"></button>
+            <button type="button" onclick="send_message()" id="submit-message"></button>
         </div>
     </div>
 {% endblock %}
