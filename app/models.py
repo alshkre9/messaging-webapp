@@ -1,27 +1,19 @@
-from __init__ import app
+from app.__init__ import app
+from app.helper import get_valid_filename, valid_password, valid_username
 
 from sqlalchemy.sql import func
 from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime, select
 from sqlalchemy.orm import DeclarativeBase, Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from helper import get_valid_filename, valid_password, valid_username
 import time
 from PIL import Image
 from os.path import join
 
 
 from os import environ
-import dns.resolver
 
-while True:
-    try:
-        db_ip = dns.resolver.query("database", "A")[0]
-        break
-    except dns.resolver.LifetimeTimeout:
-        time.sleep(1)
-        continue
 
-ENGINE = create_engine(f"mysql://root:root@{db_ip}:3306/py_db", pool_pre_ping=True)
+ENGINE = create_engine(f"mysql://root:root@host.docker.internal:3306/py_db", pool_pre_ping=True)
 
 class Base(DeclarativeBase):
     pass

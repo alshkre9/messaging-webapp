@@ -1,4 +1,4 @@
-from __init__ import app
+from app.__init__ import app
 
 from flask import redirect, session, url_for
 from flask_socketio import disconnect

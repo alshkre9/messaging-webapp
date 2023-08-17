@@ -1,6 +1,6 @@
-from __init__ import app
-from helper import valid_username, valid_password, logout_requierd
-from models import  User
+from app.__init__ import app
+from app.helper import valid_username, valid_password, logout_requierd
+from app.models import  User
 
 from flask import session, render_template, request, redirect, url_for
 

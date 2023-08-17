@@ -1,6 +1,6 @@
-from  __init__ import app
-from helper import login_required_http
-from models import Message
+from app. __init__ import app
+from app.helper import login_required_http
+from app.models import Message
 
 from flask import redirect, render_template, session
 

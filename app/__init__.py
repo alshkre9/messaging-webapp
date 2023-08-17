@@ -29,6 +29,6 @@ flask_session.Session(app)
 # make flask manage the session
 socketio = SocketIO(app, manage_session=False) 
 
-from main import *
-from authentication import *
-from sockets import *
+from app.main import *
+from app.authentication import *
+from app.sockets import *

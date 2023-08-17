@@ -1,6 +1,6 @@
-from __init__ import socketio
-from helper import login_required_websocket
-from models import Message
+from app.__init__ import socketio
+from app.helper import login_required_websocket
+from app.models import Message
 
 from flask import session
 from flask_socketio import join_room, emit, leave_room
