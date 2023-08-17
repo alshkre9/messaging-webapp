@@ -4,6 +4,7 @@ from flask import redirect, session, url_for
 from flask_socketio import disconnect
 from sqlalchemy import select
 from sqlalchemy.orm import Session
+from flask_socketio import emit
 
 from werkzeug.utils import secure_filename
 from functools import wraps
@@ -57,3 +58,6 @@ def valid_password(password: str) -> bool:
 
 def get_notification():
     return []
+
+def send(value):
+    emit("receive_message", (value, session["user_id"]))

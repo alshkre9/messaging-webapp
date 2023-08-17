@@ -1,5 +1,5 @@
 from app.__init__ import socketio
-from app.helper import login_required_websocket
+from app.helper import login_required_websocket, send
 from app.models import Message
 
 from flask import session
@@ -12,10 +12,12 @@ from sqlalchemy.orm import Session
 @login_required_websocket
 def connect(null):
     emit("user_room", session["user_id"])
-    for message in Message.get():
-        emit("receive_message", message.value, session["user_id"])
+    result = Message.get()
+    for message in result["messages"]:
+        send(message.value)
+    result["session"].close()
 
 @socketio.on("send_message")
 def message(value):
     Message.create(from_=session["user_id"], value=value)
-    socketio.emit("receive_message", (value, session["user_id"]))
+    send(value)

@@ -1,6 +1,5 @@
 const socket = io();
 let user_id = null;
-let room_id = null
 
 // start connection by storing room_id
 socket.on("user_id", function(id)
@@ -31,4 +30,12 @@ function send_message()
             document.getElementById("message").value = null;
             socket.emit('send_message', message_value);
         }
+}
+
+function create_message(message_value, class_name)
+{
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(message_value));
+    li.classList.add("message", class_name);
+    document.getElementById("messages").appendChild(li);
 }

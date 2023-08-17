@@ -79,8 +79,8 @@ class Message(Base):
 
     @staticmethod
     def get():
-        with Session(ENGINE) as sess:
-            return sess.execute(select(Message).order_by(Message.date)).scalars()
+        sess = Session(ENGINE)
+        return {"messages": sess.execute(select(Message).order_by(Message.date)).scalars(), "session": sess}
 
 
 # Base.metadata.drop_all(ENGINE)
