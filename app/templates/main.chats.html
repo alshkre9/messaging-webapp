@@ -2,13 +2,13 @@
 
 {% block content %}
     <div class="h-100 w-100 d-flex flex-column">
-        <div class="overflow-auto w-100 h-100">
+        <div class="overflow-auto w-100 h-100 overflow-x-hidden">
             <ul id="messages" class="d-flex flex-column h-100 w-100 ">
             </ul>
         </div>
-        <div>
-            <input type="text" id="message">
-            <button type="button" onclick="send_message()" id="submit-message"></button>
+        <div class="bg-secondary d-flex px-5 py-2 justify-content-center">
+            <input type="text" id="message" class="form-control rounded w-50 me-2" placeholder="message">
+            <button type="button" onclick="send_message()" id="submit-message">send</button>
         </div>
     </div>
 {% endblock %}

@@ -1,3 +1,11 @@
+window.onload = function ()
+{
+    const node = document.getElementById("message");
+    node.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            send_message();
+        }})
+}
 
 function valid_authentication()
 {

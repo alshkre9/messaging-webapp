@@ -5,8 +5,8 @@
     --shade-color: #e9ecef;
     --text-color-light: white;
     --text-color-dark: #04070c;
-    --user-color: var(--secondary-color);
-    --friend-message: var(--primary-color);
+    --user-color: var(--primary-color);
+    --friend-message: var(--secondary-color);
 }
 /* change defaults */
 body {
@@ -168,6 +168,18 @@ h1,h2,h3,h4 {
 /* end */
 
 /* specification */
+.date {
+    color: var(--text-color);
+    font-size: 8px;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    white-space: nowrap;
+}
+.message-value {
+    margin: 0px;
+}
 #menu {
     width: 50%;
 }
@@ -220,7 +232,12 @@ h1,h2,h3,h4 {
     max-width: 50%;
     word-wrap: anywhere;
     border-radius: 20px;
-    margin: 0px 5px 5px;
+    margin: 0px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 .outline-none {
     outline: none !important;
@@ -265,6 +282,9 @@ h1,h2,h3,h4 {
 }
 #sub-menu > li:not(:nth-last-child(1)) {
     border-bottom-color: var(--text-color);
+}
+.overflow-x-hidden {
+    overflow-x: hidden !important;
 }
 /* end */
 
