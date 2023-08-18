@@ -24,12 +24,11 @@ def sign_in():
         else:
             return "invalid username or password".title()
 
-    return render_template("authentication.sign_in.html", app_name="hello", path="/sign-in", name="sign in")
+    return render_template("authentication.sign_in.html", app_name=app.config["APP_NAME"], path="/sign-in", name="sign in")
 
 @app.route("/sign-up", methods=["GET", "POST"])
 @logout_requierd
 def sign_up():
-    # return "hello"
     if "POST" == request.method:
         password = request.form.get("password")
         username = request.form.get("username")

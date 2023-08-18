@@ -11,7 +11,7 @@ def index():
 @app.route("/chats", methods=["GET"])
 @login_required_http
 def friends():
-	return render_template("main.chats.html", app_name=app.config["APP_NAME"], messages=Message.get())
+	return render_template("main.chats.html", app_name=app.config["APP_NAME"])
 
 @app.route("/profile", methods=["GET"])
 @login_required_http
