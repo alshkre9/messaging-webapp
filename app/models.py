@@ -2,7 +2,7 @@ from app.__init__ import app
 from app.helper import get_valid_filename, valid_password, valid_username
 
 from sqlalchemy.sql import func
-from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime, select
+from sqlalchemy import create_engine, Column, Integer, VARCHAR, ForeignKey, Text, DateTime, select, desc
 from sqlalchemy.orm import DeclarativeBase, Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import time
@@ -78,9 +78,14 @@ class Message(Base):
             return True
 
     @staticmethod
-    def get():
+    def getAll():
         sess = Session(ENGINE)
         return {"messages": sess.execute(select(Message).order_by(Message.date)).scalars(), "session": sess}
+
+    @staticmethod
+    def get(from_, value):
+        sess = Session(ENGINE)
+        return {"message": sess.execute(select(Message).where(Message.from_ == from_).where(Message.value == value).order_by(desc(Message.date))).scalar(), "session": sess}
 
 
 # Base.metadata.drop_all(ENGINE)

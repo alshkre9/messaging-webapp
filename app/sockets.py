@@ -11,13 +11,16 @@ from sqlalchemy.orm import Session
 @socketio.on("connect")
 @login_required_websocket
 def connect(null):
-    emit("user_room", session["user_id"])
-    result = Message.get()
+    emit("user_id", session["user_id"])
+    result = Message.getAll()
     for message in result["messages"]:
-        send(message.value)
+        send(value=message.value, date=message.date, from_=message.from_)
     result["session"].close()
 
 @socketio.on("send_message")
 def message(value):
     Message.create(from_=session["user_id"], value=value)
-    send(value)
+    pair = Message.get(from_=session["user_id"], value=value)
+    message = pair["message"]
+    send(value=message.value, date=message.date, from_=message.from_)
+    pair["session"].close()

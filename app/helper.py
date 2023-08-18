@@ -59,5 +59,5 @@ def valid_password(password: str) -> bool:
 def get_notification():
     return []
 
-def send(value):
-    emit("receive_message", (value, session["user_id"]))
+def send(value, date, from_):
+    emit("receive_message", (value, from_, str(date.time())))
