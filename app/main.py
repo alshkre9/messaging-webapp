@@ -16,4 +16,9 @@ def friends():
 @app.route("/profile", methods=["GET"])
 @login_required_http
 def profile():
-	return "hello"
+	return "profile"
+
+@app.route("/settings", methods=["GET"])
+@login_required_http
+def settings():
+	return "settings"
