@@ -114,32 +114,6 @@ h1,h2,h3,h4 {
     background-color: var(--secondary-color);
     color: var(--primary-color) !important;
 }
-.border-b-trans::before {
-    content: "";
-    height: 2px;
-    width: 0px;
-    position: absolute;
-    right: 50%;
-    background-color: var(--primary-color);
-    bottom: -1px;
-    transition-duration: 0.1s;
-    transition-timing-function: linear;
-    transition-property: all;
-}
-.border-b-trans:hover::before {
-    width: 100%;
-    right: 0;
-}
-#sub-menu::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    top: -10px;
-    right: 0px;
-    background-color: var(--secondary-color);
-    position: absolute;
-    transform: rotate(45deg) translate(0%, 0%);
-}
 .pointer-hover {
     cursor: pointer;
 }
@@ -179,24 +153,6 @@ h1,h2,h3,h4 {
 }
 .message-value {
     margin: 0px;
-}
-#menu {
-    width: 50%;
-}
-#content {
-    width: 100%;
-    display: flex;
-}
-#active-chat {
-    display: none;
-    border-bottom: 2px solid var(--secondary-color);
-}
-#resize-button {
-    display: none;
-    transform: rotate(180deg);
-}
-#message-form {
-    background-color: rgb(49, 48, 48) !important;
 }
 #warning {
     display: none;
@@ -249,10 +205,6 @@ h1,h2,h3,h4 {
 .friend-message {
     background-color: var(--friend-message);
 }
-.footer-img {
-    width: 38px !important;
-    height: 38px !important;
-}
 .profile-img {
     width: 52px;
     height: 52px;
@@ -260,28 +212,6 @@ h1,h2,h3,h4 {
     background-position: center;
     background-size: cover;
     border-radius: 50%;
-}
-#note {
-    top: -6px;
-    right: 0px;
-    width: 16px;
-    height: 16px;
-    font-size: 8px;
-}
-
-#sub-menu {
-    display: none;
-    width: fit-content;
-    height: fit-content;
-    /* top: 100%; */
-    top: 165%;
-    transform: translate(0%, 0%);
-    animation-duration: 0.3s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-}
-#sub-menu > li:not(:nth-last-child(1)) {
-    border-bottom-color: var(--text-color);
 }
 .overflow-x-hidden {
     overflow-x: hidden !important;
