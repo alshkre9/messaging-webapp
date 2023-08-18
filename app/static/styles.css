@@ -238,6 +238,9 @@ h1,h2,h3,h4 {
     .auth-img {
         width: 300px;
     }
+    #nav {
+        display: none !important;
+    }
 }
 @media screen and (max-width: 576px) {
     .title {margin: 0px;}
