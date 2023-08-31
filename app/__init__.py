@@ -6,20 +6,12 @@ import os
 import os.path
 
 APP_NAME = "main"
-PROFILE_IMAGES = "app\static\images\profile_images"
-if not os.path.exists(PROFILE_IMAGES):
-    os.mkdir(PROFILE_IMAGES)
-PROFILE_IMAGES_DIMENSIONS = (128, 128)
-ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 
 app = Flask(__name__)
 
 # Confiqs
 app.secret_key = "1"
 app.config["APP_NAME"] = APP_NAME
-app.config["PROFILE_IMAGES"] = PROFILE_IMAGES 
-app.config["PROFILE_IMAGES_DIMENSIONS"] = PROFILE_IMAGES_DIMENSIONS
-app.config["ALLOWED_EXTENSIONS"] = ALLOWED_EXTENSIONS
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SESSION_PERMANENT"] = False
 

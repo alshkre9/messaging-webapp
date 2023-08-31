@@ -19,7 +19,6 @@ def sign_in():
             if pair := User.get(username=username, password=password):
                 session["user_id"] = pair["user"].id
                 session["username"] = pair["user"].username
-                session["filename"] = pair["user"].filename
                 return(redirect("/"))
         else:
             return "invalid username or password".title()
@@ -32,9 +31,8 @@ def sign_up():
     if "POST" == request.method:
         password = request.form.get("password")
         username = request.form.get("username")
-        filename = request.form.get("file")
         if valid_username(username) and valid_password(password):
-            if not (user := User.create(username, password, filename)):
+            if not (user := User.create(username, password)):
                 return "username and password already taken"
             return redirect(url_for("sign_in"))
         else:

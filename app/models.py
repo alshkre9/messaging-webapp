@@ -24,10 +24,9 @@ class User(Base):
     id = Column("id", Integer, primary_key=True)
     username = Column("username", VARCHAR(28), nullable=False)
     hash = Column("hash", Text, nullable=False)
-    filename = Column("filename", VARCHAR(30), nullable=False, default="default.jpg")
 
     @staticmethod
-    def create(username, password, filename) -> bool:
+    def create(username, password) -> bool:
         """
             create user enitiy and
             return true if was created false otherwise
@@ -38,15 +37,9 @@ class User(Base):
                 if check_password_hash(user.hash, password):
                     sess.close()
                     return None
-            user = User(username=username, hash=generate_password_hash(password), filename=filename)
+            user = User(username=username, hash=generate_password_hash(password))
             sess.add(user)
             # add filename to user entity
-            if filename:
-                if (filename := get_valid_filename(filename, user.id)):
-                    filename = Image.open(filename)
-                    filename.thumbnail(app.config["PROFILE_IMAGES_DIMENSIONS"])
-                    filename.save(join(app.config["PROFILE_IMAGES"], filename))
-                    user.filename = filename
             sess.commit()
             return True
 
