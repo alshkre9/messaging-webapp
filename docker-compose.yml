@@ -12,7 +12,8 @@ services:
       timeout: 20s
       retries: 10
     volumes:
-      - ./../data:/docker-entrypoint-initdb.d/
+      - ./data/:/docker-entrypoint-initdb.d/
+      - ./mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
     networks:

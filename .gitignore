@@ -1,3 +1,4 @@
 app/__pycache__
 flask_session
 profile_images/
+mysql_data
