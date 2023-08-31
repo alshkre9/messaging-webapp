@@ -1,10 +1,10 @@
-from app.__init__ import app
+from app.__init__ import app, socketio
 
 from flask import redirect, session, url_for
 from flask_socketio import disconnect
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from flask_socketio import emit
+from flask_socketio import SocketIO
 
 from werkzeug.utils import secure_filename
 from functools import wraps
@@ -60,4 +60,4 @@ def get_notification():
     return []
 
 def send(value, date, from_):
-    emit("receive_message", (value, from_, str(date.time())))
+    socketio.emit("receive_message", (value, from_, str(date.time())))

@@ -13,12 +13,12 @@ def index():
 def friends():
 	return render_template("main.chats.html", app_name=app.config["APP_NAME"])
 
-@app.route("/profile", methods=["GET"])
-@login_required_http
-def profile():
-	return "profile"
+# @app.route("/profile", methods=["GET"])
+# @login_required_http
+# def profile():
+# 	return "profile"
 
-@app.route("/settings", methods=["GET"])
-@login_required_http
-def settings():
-	return "settings"
+# @app.route("/settings", methods=["GET"])
+# @login_required_http
+# def settings():
+# 	return "settings"

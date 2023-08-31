@@ -10,6 +10,7 @@ socket.on("user_id", function(id)
 
 // receive_message from the server
 socket.on("receive_message", function(message_value, from, date) {
+    console.log([message_value, from, date])
         if (from === user_id)
         {
             // create message for the user
