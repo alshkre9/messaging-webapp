@@ -1,5 +1,5 @@
 # Messaging-webapp With Flask
-### Simple Web Application 
+### Web Application 
 for texting and contact with friends
 
 ## Tools :
@@ -20,32 +20,16 @@ for texting and contact with friends
 
 <p>
 
-![Screenshot 2023-07-02 at 12-41-24 main](https://github.com/alshkre9/messaging-webapp/assets/129284063/682e0d5e-5a11-41ed-b82c-1067179c06d3)
-![Screenshot 2023-07-02 at 12-50-11 main](https://github.com/alshkre9/messaging-webapp/assets/129284063/25adc371-da09-4701-9690-372115915d16)
+![Screenshot 2023-08-31 at 08-53-00 main](https://github.com/alshkre9/messaging-webapp/assets/129284063/68b5b5ef-d719-4138-8b47-ee00cd1054e3)
+![Screenshot 2023-08-31 at 09-00-04 main](https://github.com/alshkre9/messaging-webapp/assets/129284063/c9f4e604-aa00-4e82-8c97-a85701f02a1a)
+![Screenshot 2023-08-31 at 09-00-38 main](https://github.com/alshkre9/messaging-webapp/assets/129284063/9e3dd233-b6df-4580-a686-c775ecf8d504)
+
 
 </p>
 
-#
-
-### Entity Relationship Diagram:
-
-![Untitled Diagram](https://github.com/alshkre9/messaging-webapp/assets/129284063/be64f2ef-a4ae-4324-a90e-a963171bf10a)
-
-#
-
 # Usage
 
-* Install The [Requirements](requirements.txt) with "pip install"
-
-* Make sure that you have mysql-server on your device
-    * Create database with the name "website"
-
-    * run this command in your console environment
-        * ``` console
-            $ export mysql_password={passowrd}
-            ```
-
-* now you can run the program with: 
-    * ``` console
-        $ python -m flask run [--debug]
-        ```
+```console
+docker compose up -d --build
+python -m flask run [--debug] [--host=0.0.0.0]
+```
